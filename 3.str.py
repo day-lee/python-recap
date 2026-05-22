@@ -2,11 +2,11 @@ str.strip() 글자 양 옆 공백제거
 str.lstrip, str.rstrip() 왼, 오른쪽 지정 공백 제거
 
 str.strip("-") 글자 양쪽 끝의 기호만 제거할 때 
-str.replace("-", "") 글자 양끝, 중간 모두 대체헤버림 
+str.replace("-", "") 글자 양끝, 중간 모두 대체해버림 
 
-str.split("조건str")은 앞뒤, 중간 공백을 다 제거한 깔끔한 리스트를 만들어준다. 
-str.join(list)는 요소들 사이에 언더바를 넣어 문자열로 합쳐준다. 
-"_".join(list)
+str.split("separator")은 앞뒤, 중간 공백을 다 제거한 깔끔한 리스트를 만들어준다. 구분자는 엑셀에서 문자열 나누기 할 떄와 같다. 
+"".join(list)는 요소들 사이에 언더바를 넣어 문자열로 합쳐준다. 
+"_".join(list) 여기서 list 요소는 int일 수 없다. str이어야 한다. 
 
 str.startswith("조건str") 조건문에서 문자열이 특정 문자로 시작하는지 불리언으로 리턴
 str.endswith("조건str") 
