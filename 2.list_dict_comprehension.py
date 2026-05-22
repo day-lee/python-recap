@@ -5,13 +5,6 @@
 if 문만 사용할 때는 for loop 뒤에 위치한다.
 if-else 문으로 작성할 때는 표현식 expression과 if else가 for loop 앞에 위치한다.
 
-리스트 추가 방법 
-1. 값 하나 추가 list.append(1) 
-2. 리스트 확장 list += [1, 2] iterable 만 더할 수 있음 
-3. 리스트 확장 extend([1, 2])
-4. 리스트 합치기 새로운 리스트 생성: list1 + list2
-
-딕셔너리에 키-벨류 페어를 추가할 떄 my_dict["color"] = "black" 처럼 추가한다. 
 =====================================================================
 
 my_list = [i for i in range(5)]
