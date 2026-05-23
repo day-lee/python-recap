@@ -51,6 +51,7 @@ __reversed(list) 함수로 리스트 뒤집기
 - 최신글부터 보여주기 기능
 
 enumerate() 함수와 반복문 조합하기
+- enumerate는 하나하나 세어보다 라는 뜻, 순서 번호를 달아서 하나씩 센다. 
 - enumerate(list, start=1)
 - 반복문 돌때 데이터와 인덱스 번호를 순서대로 보여줌 
 - for index, data in enumerate(list, start=1): ...
