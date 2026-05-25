@@ -38,11 +38,21 @@ pop(인덱스): 특정 위치의 값을 지우고 그 지워진 값을 꺼내와
 리스트 내부에 있는지 확인하기: in/not in 연산자	
 
 리스트 정렬하기: sort(), sorted()
-list.sort(): 원본을 직접 변경.
-- 원본 순서 파괴됨
-sorted(list, reverse=True): 원본 유지, 정렬된 새로운 리스트 복사해서 반환. 
-- reverse=True 는 내림차순, 인기순 
-- 안정성있어 더 자주쓰임
+list.sort(): 
+- 원본을 직접 변경, 원본 순서 파괴됨
+
+sorted(iterable, reverse=True, key=None)
+- 원본 유지, 원본 보호 가능, 안정성, 자주 쓰임
+- 정렬된 "새로운 리스트" 복사해서 반환. 
+- iterable은 list, tuple, dict, set, str 도 받을 수 있음
+- reverse=True 는 내림차순, 인기순, 기본값은 오름차순 False  
+- key는 비교 기준 가이드라인을 줌 
+    sorted(dict_list, key=lambda item_dict:item_dict["price"])
+- key는 인자를 하나만 받는 함수나 호출 가능 객체 callable 
+- 키에 비교 기준 스트링만 주면 안된다. sorted() 함수는 리스트 원소를 하나씩 순회하면서 기준값을 추출해낸다. 
+- dict의 첫 원소를 꺼내서 람다 함수에 전달하면 값에 접근하고 메모리에 기록해둠
+- 다음 원소를 꺼내서 람다 함수에 전달해서 메모리에 기록함 
+- 전체 리스트를 돈다음 메모리에 결과를 보고 정렬을 함 
 
 리스트에 적용할 수 있는 기본 함수: min(list), max(list), sum(list)
 - 이 함수들은 list 뿐만 아니라 iterable을 아규먼트로 받는다.
