@@ -16,7 +16,22 @@
     name, age, job = get_user_info()
     print(name, age, job) # kim 12 student
 
+* 튜플 보따리를 푸는 별표 언패킹 unpacking operator 
+- zip(*zipped_data), *args 
+- iterable 반복 가능 객체를 묶고 있는 보따리 매듭을 풀어라.
+- "튜플/리스트 보따리를 해체해서 알맹이를 순서대로(positional) 정렬해줌"
 
+- args 변수는 이런 모양이다. 
+  튜플로 묶여있음 args = ({"name": "Kim"}, "M4 맥북 프로") 
+- *별표를 붙이면 언패킹되면서
+   original_func({"name": "Kim"}, "M4 맥북 프로") 이렇게 포지셔널 인자 2개로 복원된다. 
+
+- zipped_data = [("Kim", 85), ("Lee", 92), ("Park", 78)]
+-  zip(*zipped_data)이렇게 호출하면 아래처럼 풀어서 독립적으로 넣어준다. 
+   zip(("Kim", 85), ("Lee", 92), ("Park", 78))
+
+
+=============================================================
 visit_logs = [
     ("user1", "main"),
     ("user2", "cart"),
