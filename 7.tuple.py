@@ -10,16 +10,25 @@
     }
 - 리스트의 index, +, *, slicing 모두 사용 가능
     my_tuple[1:2]
+
+- 튜플 패킹: 괄호없이 쉼표로만 나열하매도 튜플로 처리
+  "lee", 12, "student"  == ("lee", 12, "student")
+   "kim", -> 쉼표가 붙어있으니 튜플 
+
 - 튜플 언패킹
     def get_user_info():
         return "kim", 12, "student"
+        # 파이썬에서 괄호 없이 쉼표로만 나열해도 튜플로 처리됨  
     name, age, job = get_user_info()
     print(name, age, job) # kim 12 student
 
+언패킹 연산자 * 
 * 튜플 보따리를 푸는 별표 언패킹 unpacking operator 
-- zip(*zipped_data), *args 
+- zip(*zipped_data), func(*args) 
 - iterable 반복 가능 객체를 묶고 있는 보따리 매듭을 풀어라.
 - "튜플/리스트 보따리를 해체해서 알맹이를 순서대로(positional) 정렬해줌"
+주의: def wrapper(*args) 함수 정의 시에는 패킹
+    앞으로 인자가 몇개 들어올지 모르니 일단 튜플 보따리로 묶어라.
 
 - args 변수는 이런 모양이다. 
   튜플로 묶여있음 args = ({"name": "Kim"}, "M4 맥북 프로") 
