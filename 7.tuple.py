@@ -15,7 +15,8 @@
   "lee", 12, "student"  == ("lee", 12, "student")
    "kim", -> 쉼표가 붙어있으니 튜플 
 
-- 튜플 언패킹
+- iterable unpacking 반복 가능 객체 언패킹
+  튜플 언패킹 
     def get_user_info():
         return "kim", 12, "student"
         # 파이썬에서 괄호 없이 쉼표로만 나열해도 튜플로 처리됨  
