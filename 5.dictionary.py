@@ -11,8 +11,11 @@ dict.values(): dict에서 값만 모아서 돌려준다.
 
 딕셔너리에 키-벨류 페어를 추가할 떄 my_dict["color"] = "black" 처럼 추가한다. 
 
-KeyError 방지하는 dict.get()
+dict.get()
 dict.get(key, default_value_when_no_key)
+get()은 "절대 에러를 던지지 않는 안전장치" - KeyError 방지
+키가 있으면 진짜 값을 돌려줌
+키가 없으면 에러 대신 기본값 메세지 반환 
 
 딕셔너리 합치기
 dict.update(another_dict)
