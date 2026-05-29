@@ -21,7 +21,9 @@ __pycache__에 .pyc파일들이 바이트코드 이진 데이터임
 파이썬 컴파일 결과물은 가상 머신이 읽는 중간 언어로 바이트 코드이고
 정적 언어는 바로 .exe 머신언어이다. 
 
-
+변수 데이터 타입 확인하는 함수 isinstance()
+isinstance(value, str) -> boolean
+isinstance(value, (int, float))  
 
 파이썬 타입 어노테이션
 
