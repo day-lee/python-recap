@@ -12,6 +12,12 @@
         print("차단된 유저입니다.")
 - 리스트는 O(n), 셋은 O(1)
 
+- add()는 요소 하나만 추가할 때
+- update()는 iterable을 한꺼번에 합칠 때 
+    my_set = {"Kim", "Lee"}
+    my_set.update(["Choi", "Jung"])  # 세트에 리스트 합침  
+    # {'Kim', 'Lee', 'Choi', 'Jung'}
+
 
 ====================================================
 user_ids = ["user1", "user2", "user1", "user3", "user2", "user4"]
