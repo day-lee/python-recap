@@ -24,8 +24,22 @@ account_info = ("Kim", "123-456-789", 50000)
 
 ==============================================================================
 """
+def update_balance(account_info, new_balance):
+    pass
+
+
+
+
+
+
+
 # def update_balance(account_info, new_balance):
-#     pass
+#     try:
+#         account_info[2] = new_balance
+#     except TypeError as e:
+#         print("error!")
+#     name, account, __name__ = account_info 
+#     return name, account, new_balance
 
 # def update_balance(account_info, new_balance):
 #     try:

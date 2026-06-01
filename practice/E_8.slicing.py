@@ -16,6 +16,10 @@
 2. 날짜 문자열("2026-05-28")에서 앞의 4글자인 연도만 잘라내기 위해 
    파이썬의 '슬라이싱(Slicing) [:4]' 문법을 활용해 주세요.
 3. 최종 반환값은 ['2026', 'ERR_404_NOT_FOUND'] 모양의 리스트여야 합니다.
+
+슬라이싱은 sequence 타입에서만 사용가능. index가 있을 때
+str, list, tuple 
+set, dict, zip은 안됨. 쓰고 싶다면 list()로 변환한 뒤에 사용 가능 
 ==============================================================================
 1. separator로 스트링을 잘라서 리스트로 만들어준다. 
 2. 0, 2번 인덱스에 날짜와 에러코드가 있다
@@ -27,6 +31,18 @@ def extract_error_info(log_string):
     pass
 
 
+
+
+
+
+
+
+
+# def extract_error_info(log_string):
+#     # print(log_string) # 2026-05-28/ERROR/ERR_404_NOT_FOUND/auth_service 
+#     date, _, error_code, _ = log_string.split("/")
+#     # print(date, error_code)
+#     return [date[:4], error_code]
 
 # def extract_error_info(log_string):
 #     log_list = log_string.split("/")

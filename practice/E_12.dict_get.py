@@ -7,11 +7,22 @@
 요구사항:
 1. 이름을 딕셔너리에서 찾으면 그 전화번호를 반환하세요.
 2. 없는 이름이라 KeyError가 발생하면 "존재하지 않는 연락처입니다."를 반환하세요.
+dict.get(key, default_기본값) 메서드는 값을 안전하게 꺼낼 수 있다. dict[key]로 꺼낼 때 키가 존재하지 않으면 KeyError를 내고 프로그램이 멈춘다. 
 """
-def find_phone_number(address_book: dict, name: str):
-    pass
 
- 
+def find_phone_number(address_book: dict, name: str):
+pass
+
+
+
+
+
+
+
+
+# def find_phone_number(address_book: dict, name: str):
+#     return address_book.get(name, "존재하지 않는 연착처입니다.")
+
 # def find_phone_number(address_book: dict, name: str):
 #     # 여기에 try-except 문을 완성해보세요!
 #     try: 

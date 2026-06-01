@@ -27,9 +27,22 @@ B_service_users = ["park", "choi", "jung", "kang"]
 튜플 
 ==============================================================================
 """
+def extract_event_targets(list_a, list_b):
+    pass
+
+
+
+
+
+
+
+
 
 # def extract_event_targets(list_a, list_b):
-#     pass
+#     set_a = set(list_a)
+#     set_b = set(list_b)
+#     both, either, only_a = set_a & set_b, set_a | set_b, set_a - set_b 
+#     return both, either, only_a
 
 # def extract_event_targets(list_a, list_b):
 #     set_a = set(list_a)

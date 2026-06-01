@@ -16,14 +16,27 @@
 
 최종 가입 대상자: {'alex@gmail.com', 'bob@naver.com', 'charlie@daum.net'}
 (※ 집합의 특성상 순서는 바뀔 수 있습니다.)
-
-note
-how to find if there is no at sign: in keyword
-if no at sign, raise the error, log
-result is set 
+ 
 """
 def process_signups(email_list):
     pass
+
+
+
+
+
+
+
+# def process_signups(email_list):
+#     result = set()
+#     for email in email_list:
+#         try:
+#             if '@' not in email:
+#                 raise ValueError(f"[경고] 잘못된 이메일 형식입니다: {email}")
+#             result.add(email)
+#         except ValueError as e:
+#             print(e) 
+#     return result
 
 # def process_signups(email_list):
 #     valid_emails = set()
