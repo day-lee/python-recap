@@ -2,6 +2,7 @@
 
 - 중복을 허용하지 않음
 - unordered, 순서 없음 -> index 못쓴다.
+- 합집합(union) |
 - 교집합(intersection) & 
 - 차집합(difference) -
 - 내부에 해시 테이블 구조를 써서 속도가 압도적으로 빠리다. list는 순서대로 훑어봐야해서 느리다. 

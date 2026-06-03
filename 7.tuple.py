@@ -17,11 +17,15 @@
 
 - iterable unpacking 반복 가능 객체 언패킹
   튜플 언패킹 
+   `a, b = b, a` (Tuple Unpacking) 문법
+
     def get_user_info():
         return "kim", 12, "student"
         # 파이썬에서 괄호 없이 쉼표로만 나열해도 튜플로 처리됨  
     name, age, job = get_user_info()
     print(name, age, job) # kim 12 student
+
+
 
 언패킹 연산자 * 
 * 튜플 보따리를 푸는 별표 언패킹 unpacking operator 
