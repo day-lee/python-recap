@@ -16,19 +16,20 @@
 
 """
 [문제]이 orders 데이터를 받아서 각 상품의 '총 금액(수량 * 가격)'을 계산하고, 아래 [출력 예시]와 같이 멋지게 출력하는 함수 process_orders를 작성하세요.
-[제한 조건 (필수 요구사항)]함수 정의 시 가변 인자(*args)를 활용하여 인자를 받아야 합니다.함수 내부에서 데이터를 처리할 때, 인덱스 접근(예: item[0], item[1])을 쓰지 말고 오늘 배운 '튜플 언패킹(Tuple Unpacking)'을 활용하여 변수명을 명확히 지정해 주세요.
+[제한 조건 (필수 요구사항)]함수 정의 시 가변 인자(*args)를 활용하여 인자를 받아야 합니다.
+함수 내부에서 데이터를 처리할 때, 인덱스 접근(예: item[0], item[1])을 쓰지 말고 오늘 배운 '튜플 언패킹(Tuple Unpacking)'을 활용하여 변수명을 명확히 지정해 주세요.
 출력예시
 # [주문 확인] M4 맥북 프로 총 금액: 3500000원
 # [주문 확인] 아이폰 17 총 금액: 2800000원
 # [주문 확인] 에어팟 프로 총 금액: 900000원
 """
 # 가변 인자
-# 함수 호출시에 *args는 언패킹해서 포지셔널 인자로 보내줌 
 # 함수 정의시에 *args는 튜플로 패킹 묶음으로 모아줌 
+# 함수 호출시에 *args는 언패킹해서 포지셔널 인자로 보내줌 
 
-def process_orders():
+
+def process_orders(*args):
     pass
-
 
 
 
@@ -43,7 +44,13 @@ orders = [
 
 함수 호출 here
 
+
 # ============================================
+
+#    for product, qty, price in args:
+#       print(f"주문 확인 {product} 총 금액: {qty * price}")
+# process_orders(*orders)
+
 # def process_orders(*orders):
 #     print(orders)
 #     for product, quantity, price in orders:

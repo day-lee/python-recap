@@ -1,5 +1,6 @@
 """
-[문제]이 user_data를 분석하여 등급(grade)이 "vip"인 유저들만 쏙 골라내고, 그 유저들의 이메일 주소를 모두 '대문자(Uppercase)'로 변환한 새로운 딕셔너리를 반환하는 함수 filter_vip_emails를 작성하세요.
+[문제]이 user_data를 분석하여 등급(grade)이 "vip"인 유저들만 쏙 골라내고, 
+그 유저들의 이메일 주소를 모두 '대문자(Uppercase)'로 변환한 새로운 딕셔너리를 반환하는 함수 filter_vip_emails를 작성하세요.
 
 [제한 조건 (필수 요구사항)]일반적인 for문과 if문을 길게 쓰지 말고, 
 
@@ -19,14 +20,14 @@ raw_data
 }
 
 """
-def filter_vip_emails():
+def filter_vip_emails(raw_data):
     pass
 
 
 
 
-
-
+#    return { user: data["email"].upper() for user, data in raw_data.items() if data.get("grade") == "vip" }
+        
 # def filter_vip_emails(users):
 #     return {user: data["email"].upper() for user, data in users.items() if data["grade"] == 'vip'}
 

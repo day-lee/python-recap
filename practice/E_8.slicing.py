@@ -11,12 +11,6 @@
 이 log_data 문자열을 쪼개고 분석해서 '연도(Year)'와 '에러코드(Error Code)'만 쏙 
 골라내어 리스트(List) 형태로 반환하는 함수 extract_error_info를 작성하세요.
 
-[제한 조건 및 필수 요구사항]
-1. 문자열을 슬래시(/) 기준으로 쪼개기 위해 .split("/") 메서드를 사용해야 합니다.
-2. 날짜 문자열("2026-05-28")에서 앞의 4글자인 연도만 잘라내기 위해 
-   파이썬의 '슬라이싱(Slicing) [:4]' 문법을 활용해 주세요.
-3. 최종 반환값은 ['2026', 'ERR_404_NOT_FOUND'] 모양의 리스트여야 합니다.
-
 슬라이싱은 sequence 타입에서만 사용가능. index가 있을 때
 str, list, tuple 
 set, dict, zip은 안됨. 쓰고 싶다면 list()로 변환한 뒤에 사용 가능 
@@ -37,6 +31,17 @@ def extract_error_info(log_string):
 
 
 
+
+
+
+# date, _, error_code, _ = log_string.split("/")
+# return [date[:4], error_code]
+
+# [제한 조건 및 필수 요구사항]
+# 1. 문자열을 슬래시(/) 기준으로 쪼개기 위해 .split("/") 메서드를 사용해야 합니다.
+# 2. 날짜 문자열("2026-05-28")에서 앞의 4글자인 연도만 잘라내기 위해 
+#    파이썬의 '슬라이싱(Slicing) [:4]' 문법을 활용해 주세요.
+# 3. 최종 반환값은 ['2026', 'ERR_404_NOT_FOUND'] 모양의 리스트여야 합니다.
 
 # def extract_error_info(log_string):
 #     # print(log_string) # 2026-05-28/ERROR/ERR_404_NOT_FOUND/auth_service 

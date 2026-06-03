@@ -4,14 +4,11 @@
 친구들의 연락처가 저장된 딕셔너리에서 특정 이름의 전화번호를 찾는 함수를 만드세요.
 만약 존재하지 않는 이름을 검색하면 에러를 내지 않고 안내 메시지를 반환해야 합니다.
 
-요구사항:
-1. 이름을 딕셔너리에서 찾으면 그 전화번호를 반환하세요.
-2. 없는 이름이라 KeyError가 발생하면 "존재하지 않는 연락처입니다."를 반환하세요.
-dict.get(key, default_기본값) 메서드는 값을 안전하게 꺼낼 수 있다. dict[key]로 꺼낼 때 키가 존재하지 않으면 KeyError를 내고 프로그램이 멈춘다. 
+
 """
 
 def find_phone_number(address_book: dict, name: str):
-pass
+    pass
 
 
 
@@ -19,8 +16,13 @@ pass
 
 
 
+#     return address_book.get(name, "없는 친구 이름입니다.")
 
-# def find_phone_number(address_book: dict, name: str):
+# 요구사항:
+# 1. 이름을 딕셔너리에서 찾으면 그 전화번호를 반환하세요.
+# 2. 없는 이름이라 KeyError가 발생하면 "존재하지 않는 연락처입니다."를 반환하세요.
+# dict.get(key, default_기본값) 메서드는 값을 안전하게 꺼낼 수 있다. dict[key]로 꺼낼 때 키가 존재하지 않으면 KeyError를 내고 프로그램이 멈춘다. 
+
 #     return address_book.get(name, "존재하지 않는 연착처입니다.")
 
 # def find_phone_number(address_book: dict, name: str):

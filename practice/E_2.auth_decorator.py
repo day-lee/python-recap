@@ -10,8 +10,8 @@ normal_user = {"name": "Lee", "role": "USER"}
 
 # 2. 관리자 권한을 체크해 주는 데코레이터 함수 만들기
 def admin_required(original_func):
+    #언패킹 하지 않고 안전하게 인자 꺼내와서 쓰기, 일반 유저 필터링 먼저  
     pass
-    언패킹 하지 않고 안전하게 인자 꺼내와서 쓰기, 일반 유저 필터링 먼저  
 
 
 
@@ -19,14 +19,22 @@ def admin_required(original_func):
 
 
 
-#     def wrapper(*args, **kwargs):
-#         user = args[0]      #안전한 방식으로 첫 번째 인자를 유저 정보로 꺼내오기 (args[0])
-#         if user["role"] != "ADMIN":
-#             print(f"{user['name']}님은 접근 권한이 없습니다.")
-#             return None
-#         result = original_func(*args, **kwargs)
-#         return result
-#     return wrapper 
+    # def wrapper(*args):
+    #     user_info = args[0]
+    #     if user_info.get("role") == "USER":
+    #         print(f"[warning] {user_info["name"]} access not allowed")
+    #         return None # return 안해주면 바로 실행됨. 
+    #     return original_func(*args)
+    # return wrapper
+
+    # def wrapper(*args, **kwargs):
+    #     user = args[0]      #안전한 방식으로 첫 번째 인자를 유저 정보로 꺼내오기 (args[0])
+    #     if user["role"] != "ADMIN":
+    #         print(f"{user['name']}님은 접근 권한이 없습니다.")
+    #         return None
+    #     result = original_func(*args, **kwargs)
+    #     return result
+    # return wrapper 
 
     
     # # [Q1] 원본 함수에 어떤 인자가 들어올지 모르니 '만능 배달원 그릇'을 매개변수에 적어줘!

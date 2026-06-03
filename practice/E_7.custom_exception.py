@@ -19,13 +19,33 @@
  
 """
 def process_signups(email_list):
-    pass
+    pass 새로운 set를 만들기, 세트에 요소하나를 추가할 때 쓰는 메서드 
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+#     signup_set = set()
+#     for email in email_list:
+#         try: 
+#             if '@' not in email:
+#                 raise ValueError(f"올바르지 않은 이메일 입니다.: {email}")
+#             signup_set.add(email)
+#         except ValueError as e:
+#             print(e)
+#     return signup_set
 
 # def process_signups(email_list):
 #     result = set()

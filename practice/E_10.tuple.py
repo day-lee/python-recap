@@ -15,30 +15,47 @@ account_info = ("Kim", "123-456-789", 50000)
 튜플의 값을 강제로 변경하려고 할 때 파이썬이 던지는 에러를 안전하게 포획(try-except)하고,
 대신 튜플을 새로 안전하게 갱신하여 반환하는 함수 update_balance를 완성하세요.
 
-[제한 조건 및 필수 요구사항]
-1. try 블록 안에서 `account_info[2] = new_balance`를 직접 실행하여 
-   파이썬이 일부러 에러를 터트리게 만드세요.
-2. 튜플 수정 시 발생하는 파이썬 내장 에러인 'TypeError'를 except 문으로 정확히 잡으세요.
-3. except 블록 안에서 에러 메시지를 출력한 뒤, 튜플의 '불변성'을 우회하기 위해
-   기존 튜플의 정보와 새 잔액을 조합한 '새로운 튜플'을 만들어 return 하세요.
+
 
 ==============================================================================
 """
-def update_balance(account_info, new_balance):
+def update_balance(account_info, new_balance): 
+    
     pass
+   # 튜플 불변성 우회 트릭: 튜플을 직접 수정하는 대신, 기존 정보랑 새 정보를 조합해서 새 튜플을 만든다.
 
 
 
 
 
 
+
+
+
+
+
+
+
+#    try:
+#       account_info[2] = new_balance # TypeError: 'tuple' object does not support item assignment
+#    except TypeError as e:
+#       print(e)
+#    name, account, _ = account_info # 튜플 불변성 우회하기 위해 기존 튜플 정보랑 새 잔액을 조합해서 새로운 튜플을 리턴함
+#    return (name, account, new_balance)
+
+# [제한 조건 및 필수 요구사항]
+# 1. try 블록 안에서 `account_info[2] = new_balance`를 직접 실행하여 
+#    파이썬이 일부러 에러를 터트리게 만드세요.
+# 2. 튜플 수정 시 발생하는 파이썬 내장 에러인 'TypeError'를 except 문으로 정확히 잡으세요.
+# 3. except 블록 안에서 에러 메시지를 출력한 뒤, 튜플의 '불변성'을 우회하기 위해
+#    기존 튜플의 정보와 새 잔액을 조합한 '새로운 튜플'을 만들어 return 하세요.
 
 # def update_balance(account_info, new_balance):
 #     try:
 #         account_info[2] = new_balance
 #     except TypeError as e:
 #         print("error!")
-#     name, account, __name__ = account_info 
+#     name, account, _ = account_info 
 #     return name, account, new_balance
 
 # def update_balance(account_info, new_balance):
