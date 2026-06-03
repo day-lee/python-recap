@@ -4,13 +4,12 @@
 여러 개의 주소록(리스트)을 한 번에 입력받아서, 
 중복된 이름을 모두 제거하고 유일한 이름만 정렬된 리스트로 반환하는 함수를 만드세요.
 
+    # 예상 출력 결과 (중복이 제거되고 알파벳 순으로 정렬되어야 합니다):
+    # ['Choi', 'Jung', 'Kim', 'Lee', 'Park']
+
 """
 def merge_and_sort_names(*args):
-   name_list = set()
-   for item in args:
-       name_list.update(item)
-   result = sorted(name_list)
-   return result
+   pass
 
 
 
@@ -18,6 +17,31 @@ def merge_and_sort_names(*args):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   # name_set = set()
+   # for names in args:
+   #     name_set.update(names)
+   # return sorted(name_set)
+
+   # name_list = set()
+   # for item in args:
+   #     print(item)
+   #     name_list.update(item)
+   # result = sorted(name_list)
+   # return result
 """
 요구사항:
 1. 가변 인자(*args)를 사용하여 여러 개의 리스트를 한 번에 입력받으세요.
