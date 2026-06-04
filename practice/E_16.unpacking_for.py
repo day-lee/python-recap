@@ -9,12 +9,19 @@
 """
 
 def calculate_total(*args, discount_rate=0.0) -> int:
-    pass
+
+    pass explain the logic, built in method you are going to use.
 
 
 
 
 
+
+
+    # total = 0 
+    # for _, price in args:
+    #     total += price 
+    # return total * (1 - discount_rate) 
 
 #     #(('키보드', 50000), ('마우스', 30000))
 #     result = 0

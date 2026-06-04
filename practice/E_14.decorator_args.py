@@ -21,7 +21,16 @@ def check_permission(func):
 
 
 
-    # # 가변 인자를 받을 수 있도록 내부 함수를 구성하세요.
+
+
+
+    # def wrapper(*args, **kwargs):
+    #     if kwargs["user_role"] != "admin":
+    #         return "권한 거부: 관리자만 접근 가능합니다."
+    #     return func(*args, **kwargs)    
+    # return wrapper
+
+    # 가변 인자를 받을 수 있도록 내부 함수를 구성하세요.
     # def wrapper(*args, **kwargs):
     #     if kwargs.get("user_role") != "admin":
     #         return "권한 거부: 관리자만 접근 가능합니다."

@@ -17,6 +17,9 @@ def clean_user_profile(**kwargs):
 
 
 
+
+
+    # return {key: value.strip().lower() if isinstance(value, str)  else value for key, value in kwargs.items() }
 #    return {key: data.strip().lower() if isinstance(data, str) else data for key, data in kwargs.items()}
 
 """

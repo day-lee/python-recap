@@ -22,15 +22,35 @@ def clean_user_data(raw_users):
     Returns:
         예: {"ALICE": 5, "BOB": 3, "CHARLIE": 7}
     """
-
     pass 
+    # 가독성을 위해 정제된 데이터를 만들고나서, dictionary comprehension을 적용하기. 
 
 
 
 
 
+
+
+    # 중첩문에서 리스트를 만들어서 하나씩 꺼내옴 
+    # return {   
+    #     clean_name: len(clean_name)
+    #     for name in raw_users
+    #     for clean_name in [name.strip().upper()]
+    # }
+
+    # 1. Cleanse names using a generator expression to process items one by one and save memory. - memory efficiency, lazy evaluation
+    # 2. Build the final dictionary using a dictionary comprehension  
+    # return { name: len(name) for name in }
+
+    # # generator 사용
+    # cleaned_data = (name.strip().upper() for name in raw_users)
+    # return {name: len(name) for name in cleaned_data}
+
+    # # 메서드 중복 사용
+    # return { name.strip().upper(): len(name.strip()) for name in raw_users }
 
     # AI 제안 제너레이터 이용한 메모리 적게 쓰고 중복 연산 발생하지 않는 버젼
+    # 제너레이터 내부에서 이름 데이터 조작부터 해서 정제한 뒤에, 딕셔너리 컴프리헨션으로 만듬 
     # return { name: len(name) for name in (user.strip().upper() for user in raw_users)}
 
     # # strip() 연산을 두번 하므로 두번 일하게 됨. 성능상 좋지 않음 
