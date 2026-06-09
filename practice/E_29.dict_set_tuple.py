@@ -20,13 +20,21 @@ def question_10():
         ("Alice", 30000),
         ("Charlie", 12000),
     ]
-    pass
     result_dict = {}
 
 
 
 
 
+
+
+
+    # result_dict = {}
+    # for name, amount in purchase_logs:
+    #     result_dict[name] = result_dict.get(name, 0) + amount
+    # print(result_dict)
+
+  
     # result_dict = {}
     # for name, amount in purchase_logs:
     #     result_dict[name] = result_dict.get(name, 0) + amount
