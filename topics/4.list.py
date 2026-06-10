@@ -69,6 +69,15 @@ enumerate() 함수와 반복문 조합하기
 - for index, data in enumerate(list, start=1): ...
 - index, data 순서
 
+list.index(el, start, end) 특정 요소가 리스트에서 "처음으로" 나오는 인덱스 반환
+- el이 리스트에 없으면 ValueError
+
+독립적인 타입 range() 
+- 시퀀스 타입
+- 메모리 절약
+- range(시작, 끝, 간격) 정보만 메모리에 저장해두고 제너레이터 처럼 필요할 때 숫자 생성해서 건네줌 
+- list(range(3)) -> [0, 1, 2]  마지막 숫자 포함 안됨 주의 
+
 ============================================================
 
 print("_".join(['banana', "apple", "pear"]))

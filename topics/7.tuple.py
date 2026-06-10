@@ -1,6 +1,6 @@
 튜플 tuple
 
-- 리스트와 거의 같지만 불변형이다. immutable
+- 리스트와 거의 같지만 불변형이다. immutable (불변형 데이터: int, float, str, tuple, bool, frozenset)
 - 요소를 변경, 삭제할 수 없다. read-only
 - 절대 변하면 안되는 고정 데이터 묶음 
 - dictionary에서 list는 키가 될 수 없지만, tuple은 가능
