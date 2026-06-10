@@ -21,7 +21,35 @@ def question_11():
         ("David", "DEV", 1),
     ]
 
-    print(tuple([name for name, _, year in employees if year >= 3]))
+    pass 
+
+
+
+
+
+
+
+
+
+    """ 제너레이터 모범 답안
+    파이썬에는 튜플 컴프리헨션 구문이 없다. 하지만 
+    리스트 컴프리헨션으로 만들고 tuple()로 감싸지 않아도 됨.
+    tuple() 로 바로 감싸서 
+    제너레이터 표현식 generator expression을 사용하게됨 
+    []를 이용하지 않으므로 리스트를 메모리에 만들지 않고, 그냥 바로 하나씩 데이터 뽑아서 튜플에 바로 전달한다. 
+    메모리 효율성이 증가한다. 
+
+    underscore variable as a dummy var 
+    tuple() : tuple constructor 
+
+    r = tuple(name for name, _, years in employees if years >= 3)
+    print(r)
+    """
+
+    # r = tuple([name for name, _, years in employees if years >= 3])
+    # print(r)
+
+    # print(tuple([name for name, _, year in employees if year >= 3]))
 
     # result = []
     # for name, _, years in employees:
