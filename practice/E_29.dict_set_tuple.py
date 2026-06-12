@@ -20,7 +20,12 @@ def question_10():
         ("Alice", 30000),
         ("Charlie", 12000),
     ]
-    result_dict = {}
+    pass
+
+
+
+
+
 
 
 
@@ -32,8 +37,13 @@ def question_10():
     # result_dict = {}
     # for name, amount in purchase_logs:
     #     result_dict[name] = result_dict.get(name, 0) + amount
-    # print(result_dict)
 
+    """ tuple unpacking, get method 모범 답안 
+    # result_dict = {}
+    # for name, amount in purchase_logs:
+    #     result_dict[name] = result_dict.get(name, 0) + amount
+    # print(result_dict)
+    """
   
     # result_dict = {}
     # for name, amount in purchase_logs:
