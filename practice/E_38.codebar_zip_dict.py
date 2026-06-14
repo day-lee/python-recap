@@ -6,7 +6,7 @@ def warmup_question(user_emails: list[str], raw_scores: list[int]) -> dict[str, 
                 as two separate parallel lists. You need to align and consolidate this data 
                 into a single dictionary structure before saving it to the backend database.
     - email should be lowercase 
-    - dict comprehension  
+    - use dict comprehension  
 
     - Execution Example:
         warmup_question(["Alex@Gmail.com", "userB@company.com"], [95, 80])
@@ -26,7 +26,21 @@ def warmup_question(user_emails: list[str], raw_scores: list[int]) -> dict[str, 
 
 
 
-           
+
+
+    """
+    #1 
+    # zip is an iterator, memory efficient 
+    zipped_list = zip(user_emails, raw_scores)
+    r = { name.lower(): score for name, score in zipped_list }
+    return r
+
+    # 2. zip_longest 
+    from itertools import zip_longest
+    zipped = zip_longest(user_emails, raw_scores, fillvalue="")
+    r = { name.lower(): score for name, score in zipped }
+    return r 
+    """      
     # - Requirements:
     #     1. Pair the `user_emails` list and the `raw_scores` list 1:1 and iterate through them.
     #     2. Ensure all email addresses are normalized by converting them completely to 'lowercase'.
