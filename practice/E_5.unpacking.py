@@ -16,8 +16,8 @@
 
 """
 [문제]이 orders 데이터를 받아서 각 상품의 '총 금액(수량 * 가격)'을 계산하고, 아래 [출력 예시]와 같이 멋지게 출력하는 함수 process_orders를 작성하세요.
-[제한 조건 (필수 요구사항)]함수 정의 시 가변 인자(*args)를 활용하여 인자를 받아야 합니다.
-함수 내부에서 데이터를 처리할 때, 인덱스 접근(예: item[0], item[1])을 쓰지 말고 오늘 배운 '튜플 언패킹(Tuple Unpacking)'을 활용하여 변수명을 명확히 지정해 주세요.
+
+
 출력예시
 # [주문 확인] M4 맥북 프로 총 금액: 3500000원
 # [주문 확인] 아이폰 17 총 금액: 2800000원
@@ -29,12 +29,17 @@
 
 
 def process_orders(*args):
-    pass
+
+pass
 
 
 
 
 
+
+
+# [제한 조건 (필수 요구사항)]함수 정의 시 가변 인자(*args)를 활용하여 인자를 받아야 합니다.
+# 함수 내부에서 데이터를 처리할 때, 인덱스 접근(예: item[0], item[1])을 쓰지 말고 오늘 배운 '튜플 언패킹(Tuple Unpacking)'을 활용하여 변수명을 명확히 지정해 주세요.
 # --- 면접관의 채점 및 실행 코드 ---
 orders = [
     ("M4 맥북 프로", 1, 3500000),
@@ -42,11 +47,14 @@ orders = [
     ("에어팟 프로", 3, 300000)
 ]
 
-함수 호출 here
+함수 호출 여기서
 
 
 # ============================================
-
+    # for item in args:
+    #     product, qty, price = item 
+    #     print(f"[주문 확인] {product} 총 금액: {qty * price}")
+# process_orders(*orders)        
 #    for product, qty, price in args:
 #       print(f"주문 확인 {product} 총 금액: {qty * price}")
 # process_orders(*orders)
@@ -68,10 +76,11 @@ orders = [
 #     for product, amount, price in args: 
 #         print(f"[주문 확인] {product} 총 금액: {amount*price}")
 
-# 가변인자 variable length argument
-# 함수 정의할때 패킹
-# 호출할때는 언패킹 
-
+"""
+가변인자 variable length argument
+함수 정의할때 패킹
+호출할때는 언패킹 
+"""
 # def process_orders(*orders):
 #     print(orders)
 #     for product, amount, price in orders:
