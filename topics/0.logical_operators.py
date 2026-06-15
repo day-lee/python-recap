@@ -5,6 +5,10 @@ Short-circuit evalation
 파이썬은 효율성을 중요시함
 왼쪽에서 결과가 결정되면 오른쪽은 보지도 않음 
 
+가독성을 위해 괄호 사용하기
+(O) not (4 <= len <= 25)
+(X) not 4 <= len <= 25
+
 우선순위: () -> not -> and -> or
 if not is_letter and is_number:
     not is_letter를 먼저 보고, is_number를 판단함 
