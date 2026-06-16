@@ -19,7 +19,7 @@
  
 """
 def process_signups(email_list):
-    pass 새로운 set를 만들기, 세트에 요소하나를 추가할 때 쓰는 메서드 
+    pass
 
 
 
@@ -34,8 +34,17 @@ def process_signups(email_list):
 
 
 
+    # # pass 새로운 set를 만들기, 세트에 요소하나를 추가할 때 쓰는 메서드 
+    # new_email_list = set()
+    # for email in email_list:
+    #     try:
+    #         if "@" not in email:
+    #             raise ValueError(f"[경고] 잘못된 이메일 형식입니다: {email}")
+    #         new_email_list.add(email)
+    #     except ValueError as e:
+    #         print(e)
 
-
+    # return new_email_list
 
 #     signup_set = set()
 #     for email in email_list:
@@ -68,23 +77,25 @@ def process_signups(email_list):
 #         except ValueError as e:
 #             print(e)
 #     return valid_emails
-# def process_signups(email_list):
-#     # 1. 결과를 담을 빈 집합(Set)을 만듭니다. (힌트: set() 사용)
-#     valid_emails = set()
-#     for email in email_list:
-#         # 이 공간에 코드를 작성하세요.
-#         # 힌트 1: try-except 구조를 만드세요.
-#         # 힌트 2: if "@" not in email: 상황일 때 raise ValueError("에러메시지")를 실행하세요.
-#         # 힌트 3: 집합에 요소를 추가할 때는 .add() 메서드를 씁니다.
-#         try:
-#             if "@" not in email:
-#                 raise ValueError(f"잘못된 이메일 형식입니다: {email}")
-            
-#             valid_emails.add(email)
-#         except ValueError as e:
-#             print(e)
-#     return valid_emails
 
+"""
+def process_signups(email_list):
+    # 1. 결과를 담을 빈 집합(Set)을 만듭니다. (힌트: set() 사용)
+    valid_emails = set()
+    for email in email_list:
+        # 이 공간에 코드를 작성하세요.
+        # 힌트 1: try-except 구조를 만드세요.
+        # 힌트 2: if "@" not in email: 상황일 때 raise ValueError("에러메시지")를 실행하세요.
+        # 힌트 3: 집합에 요소를 추가할 때는 .add() 메서드를 씁니다.
+        try:
+            if "@" not in email:
+                raise ValueError(f"잘못된 이메일 형식입니다: {email}")
+            
+            valid_emails.add(email)
+        except ValueError as e:
+            print(e)
+    return valid_emails
+"""
 
 # --- 면접관의 채점 및 실행 코드 ---
 signup_requests = ["alex@gmail.com", "invalid_email_1", "bob@naver.com", "alex@gmail.com", "invalid_email_2", "charlie@daum.net"]
