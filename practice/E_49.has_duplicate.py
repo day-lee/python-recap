@@ -7,6 +7,7 @@ otherwise return false.
 '''
 
 def has_duplicate(nums: list[int]) -> bool:
+
     pass
 
 
@@ -19,6 +20,14 @@ def has_duplicate(nums: list[int]) -> bool:
 
 
 
+    # count = {}
+    # for num in nums:
+    #     if num in count:
+    #         return True 
+    #     count[num] = 1
+    # return False
+
+    # return len(nums) != len(set(nums))
 
     # count = {} 
     # for num in nums:
