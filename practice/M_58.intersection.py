@@ -4,9 +4,37 @@ Find Intersection
 Have the function FindIntersection(strArr) read the array of strings stored in strArr which will contain 2 elements: the first element will represent a list of comma-separated numbers sorted in ascending order, the second element will represent a second list of comma-separated numbers (also sorted). Your goal is to return a comma-separated string containing the numbers that occur in elements of strArr in sorted order. If there is no intersection, return the string false.
 
 """
-
 def find_intersection(strArr):
   pass 
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  # #best practice: 숫자가 담긴 문자열을 처리할 때는 숫자 타입으로 변환하는 것이 안전함. 
+  # first = set(int(num) for num in strArr[0].split(","))
+  # second = [int(num) for num in strArr[1].split(",")]
+
+  # # in operator with set() for faster lookup
+  # result_list = [str(i) for i in second if i in first]
+  # result_str = ",".join(result_list)
+
+  # if not result_str:
+  #   return "false"
+  # return result_str
 
   """ 최적화 답안
   기준 리스트를 세트로 변환한 뒤, 두번째 리스트 순회하며 in 으로 포함여부 체크 
@@ -24,27 +52,46 @@ def find_intersection(strArr):
   return ",".join(intersection)
   """
 
-  """ 내 답안 
-  # make a combined list +
-    combined_list = strArr[0].split(",") + strArr[1].split(",")
-  # iterate to crate counter hash dict - occurence
-    counter = {}
-    result_list = []
-    for num in combined_list:
-      int_num = int(num)
-      counter[int_num] = counter.get(int_num, 0) + 1
-  # if, value >= 2 then make a list
-  # if len of result list is 0, False 
-    for key, value in counter.items():
-      if value >= 2:
-        result_list.append(str(key)) # type 
-    if len(result_list) == 0:
-      return "false" # return the string false.
-    # sort the list
-    result_list.sort(reverse=False, key=int)
-    # turn into string
-    return ",".join(result_list)
-  """
+# 내 답안 
+#   # make a combined list +
+#     combined_list = strArr[0].split(",") + strArr[1].split(",")
+#   # iterate to crate counter hash dict - occurence
+#     counter = {}
+#     result_list = []
+#     for num in combined_list:
+#       int_num = int(num)
+#       counter[int_num] = counter.get(int_num, 0) + 1
+#   # if, value >= 2 then make a list
+#   # if len of result list is 0, False 
+#     for key, value in counter.items():
+#       if value >= 2:
+#         result_list.append(str(key)) # type 
+#     if len(result_list) == 0:
+#       return "false" # return the string false.
+#     # sort the list
+#     result_list.sort(reverse=False, key=int)
+#     # turn into string
+#     return ",".join(result_list)
+
+  #   # O(n) 브루트 포스 두 리스트 정수형으로 바꾼 뒤, 포함 여부 확인 
+  # list_1 = strArr[0].split(",")
+  # list_2 = strArr[1].split(",")
+
+  # int_list_1 = [int(num.strip()) for num in list_1]
+  # int_list_2 = [int(num.strip()) for num in list_2]
+
+  # result = []
+  # for num in int_list_1:
+  #   if num in int_list_2:
+  #     result.append(str(num))
+
+  # # if no intersection, return string false 
+  # if len(result) == 0:
+  #   return "false"
+
+  # r = ",".join(result)
+  # return r
+
 # keep this function call here 
 print(find_intersection(["1, 5, 6, 7, 10, 11, 12", "5, 6, 8, 11, 17"] )) # 5,6,11
 print(find_intersection(["1, 2, 4, 5, 6, 9", "2, 3, 4, 8, 10"])) #2, 4
