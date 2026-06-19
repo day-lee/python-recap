@@ -14,20 +14,40 @@ B_service_users = ["park", "choi", "jung", "kang"]
 두 서비스의 유저 명단을 분석하여 다음 3가지 결과 집합(Set)을 반환하는 
 함수 extract_event_targets(list_a, list_b)를 작성하세요.
 
-1. 두 서비스를 '모두' 이용하고 있는 충성 고객 명단 (교집합)
-2. 두 서비스 중 '적어도 하나'를 이용하고 있는 전체 고객 명단 (합집합)
-3. 'A 서비스만' 이용하고 있는 고객 명단 (차집합)
+1. 두 서비스를 '모두' 이용하고 있는 충성 고객 명단 
+2. 두 서비스 중 '적어도 하나'를 이용하고 있는 전체 고객 명단 
+3. 'A 서비스만' 이용하고 있는 고객 명단 
 
 
 ==============================================================================
 """
 def extract_event_targets(list_a, list_b):
-    pass
+    pass 
 
 
 
 
 
+
+
+
+
+
+
+
+    # 1. 두 서비스를 '모두' 이용하고 있는 충성 고객 명단 (교집합)
+    # 2. 두 서비스 중 '적어도 하나'를 이용하고 있는 전체 고객 명단 (합집합)
+    # 3. 'A 서비스만' 이용하고 있는 고객 명단 (차집합)
+
+
+    # user_set_a = set(list_a)
+    # user_set_b = set(list_b)
+
+    # both = user_set_a & user_set_b 
+    # either = user_set_a | user_set_b  
+    # only_a = user_set_a - user_set_b 
+
+    # return both, either, only_a
 
     # a_user_set = set(list_a)
     # b_user_set = set(list_b)
