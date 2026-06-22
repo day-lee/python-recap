@@ -20,9 +20,8 @@ account_info = ("Kim", "123-456-789", 50000)
 ==============================================================================
 """
 def update_balance(account_info, new_balance): 
-    
+
     pass
-   # 튜플 불변성 우회 트릭: 튜플을 직접 수정하는 대신, 기존 정보랑 새 정보를 조합해서 새 튜플을 만든다.
 
 
 
@@ -30,11 +29,15 @@ def update_balance(account_info, new_balance):
 
 
 
+    # try:
+    #     account_info[2] = new_balance
+    # except TypeError as e:
+    #     print(e) 
+    # name, number, _ = account_info
+    # new_account_info = (name, number, new_balance) 
+    # return new_account_info
 
-
-
-
-
+# 튜플 불변성 우회 트릭: 튜플을 직접 수정하는 대신, 기존 정보랑 새 정보를 조합해서 새 튜플을 만든다.
 
 #    try:
 #       account_info[2] = new_balance # TypeError: 'tuple' object does not support item assignment
@@ -50,14 +53,15 @@ def update_balance(account_info, new_balance):
 # 3. except 블록 안에서 에러 메시지를 출력한 뒤, 튜플의 '불변성'을 우회하기 위해
 #    기존 튜플의 정보와 새 잔액을 조합한 '새로운 튜플'을 만들어 return 하세요.
 
-# def update_balance(account_info, new_balance):
-#     try:
-#         account_info[2] = new_balance
-#     except TypeError as e:
-#         print("error!")
-#     name, account, _ = account_info 
-#     return name, account, new_balance
-
+"""모범 답안
+def update_balance(account_info, new_balance):
+    try:
+        account_info[2] = new_balance
+    except TypeError as e:
+        print("error!")
+    name, account, _ = account_info 
+    return name, account, new_balance
+"""
 # def update_balance(account_info, new_balance):
 #     try:
 #         account_info[2] = new_balance
@@ -84,7 +88,6 @@ def update_balance(account_info, new_balance):
 #         # 힌트: account_info[0], account_info[1] 정보와 new_balance를 한 보따리로 묶으세요.
 #         # (괄호를 써서 묶어 리턴하면 명시적인 튜플이 됩니다!)
 #         return (account_info[0], account_info[1], new_balance)
-
 
 
 # ------------------------------------------------------------------------------
