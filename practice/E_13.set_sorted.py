@@ -9,25 +9,35 @@
 
 """
 def merge_and_sort_names(*args):
-   pass
+    pass
+
+names_set = set() 
+for name in args:
+    names_set.update(name)
+
+""" 모범 답안 
+1. 가독성 좋은 list 연장 extend 
+def merge_and_sort_names(*args):
+   names_list = []
+   for names in args:
+       names_list.extend(names)
+   return sorted(set(names_list))
+
+2. 메모리 아끼는 set() 먼저 세팅 
+   unique_names = set()
+   for item in args:
+      unique_names.update(item)
+   return sorted(unique_names)
+
+3. 내장 기능 사용. *args로 인자 넘겨줌.  호출시 언패킹 
+   from itertools import chain
+   return sorted(set(chain(*args)))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  nested_data = ( ['Kim', 'Lee'], ['Park'], ['Choi'] )
+  list(chain(*nested_data)) 
+   # ['Kim', 'Lee', 'Park', 'Choi']
+"""
 
 
 
