@@ -8,11 +8,9 @@
 미션:
 1. 함수 실행 앞뒤로 "--- LOG START ---", "--- LOG END ---"를 출력하는 데코레이터 `log_decorator`를 만드세요.
 2. 메인 함수 `process_security_events`를 설계하세요. 
-   - 이 함수는 여러 개의 이벤트 데이터(딕셔너리 형태)를 한 번에(가변 인자로) 받습니다.
-   - 각 이벤트 데이터는 `{'user': 'name', 'level': 'critical'}` 같은 형태입니다.
-   - 단, 이벤트 데이터에 `level` 키가 아예 없거나, value가 비어있는 이상한 데이터가 들어오면 에러(KeyError, ValueError 등)를 안전하게 예외 처리(try-except)하고 넘어가야 합니다.
 3. 결과물 반환:
    - 예외를 통과한 정상 데이터 중, level이 "critical"(심각)인 유저들의 이름만 모아서 중복이 없는 '세트(set)' 형태로 반환하세요.
+   -> 어떤 예외가 있을 지 생각해보세요. 키, 값, 인자 수 
 
 출력예시: 
 --- LOG START ---
@@ -21,9 +19,9 @@
 --- LOG END ---
 {'alice'}
 """
-
 def log_decorator():
     pass
+
 def process_security_events():
     pass
 
@@ -36,6 +34,62 @@ def process_security_events():
 
 
 
+
+
+
+
+
+
+
+
+""" 모범답안
+def log_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("--- LOG START ---")
+        r = func(*args, **kwargs)
+        print("--- LOG END ---")
+        return r
+    return wrapper
+
+@log_decorator
+def process_security_events(*args):
+    # 아예 데이터 없는 경우
+    if not args:
+        return set() 
+    new_set =set()
+    for data in args:
+
+        try: 
+            # Guard Clause: 키가 없거나 벨류가 없는 경우 걸러내기, 그다음 핵심 조건 검사하기. 
+            # 1 키 없거나 벨류 없는것 부터 걸러내기 
+            # 이미 여기서 에러 나옴 KeyError 
+            user = data['user']
+            level = data['level']
+
+            # if 'user' not in data or 'level' not in data:
+            #     print("[경고] 필수 데이터(user 또는 level)가 누락되었습니다.")
+            #     continue 
+            if not data['user'] or not data['level']:
+                user_name = data.get('user', '알 수 없는 유저')
+                print(f"[경고] '{user_name}' 유저의 level 값이 비어있습니다.")
+                continue 
+            # 2 1단계에서 필터링된 것 중에 조건 맞는 것만
+            if level == 'critical':
+                new_set.add(data['user'])
+
+            # 원래 만든 조건문 
+            # if data['user'] is not None and data['level'] == 'critical':
+            #     new_set.add(data['user'])
+
+        except (ValueError, TypeError, KeyError) as e:
+            print(e)
+            continue
+    return new_set
+"""
+
+#    - 이 함수는 여러 개의 이벤트 데이터(딕셔너리 형태)를 한 번에(가변 인자로) 받습니다.
+#    - 각 이벤트 데이터는 `{'user': 'name', 'level': 'critical'}` 같은 형태입니다.
+#    - 단, 이벤트 데이터에 `level` 키가 아예 없거나, value가 비어있는 이상한 데이터가 들어오면 에러(KeyError, ValueError 등)를 안전하게 예외 처리(try-except)하고 넘어가야 합니다.
 # def log_decorator(original_func):
 #     def wrapper(*args):
 #         print("--- LOG START ---")
