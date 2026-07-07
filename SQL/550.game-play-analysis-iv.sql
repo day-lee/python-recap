@@ -1,5 +1,12 @@
 https://leetcode.com/problems/game-play-analysis-iv/
 
+- DATE_ADD(date_col, INTERVAL 1 DAY) : ADD_DATE()아님, interval day 1 아님, interval '1 day' 아님 
+- 날짜_더한다() 동사로 시작 아님 주의 
+- 서브쿼리는 괄호로 꼭 묶어줘야햠
+- ROUND() 함수쓸 때 괄호 위치 재확인 
+- CTE로 풀어도 되지만 서브쿼리로 푸는게 가독성이 더 좋은 경우였음. 
+ 
+
 -- 성능 최적화 답안 쿼리 
 - 플레이어 별로 그룹바이 한 뒤에 가장 첫번째 로그인 날짜를 min()를 구해서 베이스 테이블로 삼는다. 로우 수가 훅 줄어든다. 
 - 여기에 셀프 조인을해서 아이디가 같은데, 다음날 로그인한 정보가 있을 경우에만 조인을 시킨다. 날짜 연결은 date_add(date_field, interval 1 day) 함수를 이용한다. 
