@@ -1,6 +1,9 @@
 https://leetcode.com/problems/primary-department-for-each-employee/
 
 - 아이디어는 맞았는데 조합을 잘못했다. 80점
+- 윈도우 함수로 해당 직원 부서 개수를 구해두고, count(department_id) over(partition by employee_id) 이 CTE에서 카운트가 1이거나 flag가 y인 직원만 골라서 필터링해준다. 
+- union 로 카운트가 1인 직원 + flag가 Y인 직원을 묶어줄 수도 있다. union 을 쓰면 중복을 줄일 수 있다. 
+- 두 그룹은 독립적인 조건을 가지고 있어서 union 으로 집합을 결합  
 
 1. 서브쿼리 
 - Y는 그대로 출력하고 그룹바이 해서 카운트1 인 애들에 속하면 IN 출력 
@@ -19,9 +22,9 @@ employee_id in (select employee_id from employee group by employee_id having cou
 select employee_id, department_id
 from employee
 group by employee_id 
-having count(department_id) = 1
+having count(department_id) = 1 
 
-union all
+union 
 select employee_id, department_id
 from employee
 where primary_flag = 'Y'
