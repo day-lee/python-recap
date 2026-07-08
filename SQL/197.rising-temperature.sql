@@ -62,3 +62,13 @@ FROM Weather w1
 JOIN Weather w2 
 ON w2.recordDate = DATE_SUB(w1.recordDate, INTERVAL 1 DAY)
 WHERE w1.temperature > w2.temperature;
+
+
+''' 하루 전날이랑 조인하면 이렇게 이쁘게 연결됨 
+
+| id | recordDate | temperature | id | recordDate | temperature |
+| -- | ---------- | ----------- | -- | ---------- | ----------- |
+| 2  | 2015-01-02 | 25          | 1  | 2015-01-01 | 10          |
+| 3  | 2015-01-03 | 20          | 2  | 2015-01-02 | 25          |
+| 4  | 2015-01-04 | 30          | 3  | 2015-01-03 | 20          |
+'''
