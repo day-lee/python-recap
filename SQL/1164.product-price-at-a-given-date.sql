@@ -1,6 +1,8 @@
 https://leetcode.com/problems/product-price-at-a-given-date/
 
-> 핵심 키워드: 독립 집합 분리, NOT EXISTS(셔틀구조), LEFT JOIN + COALESCE
+> 핵심 키워드: 독립 집합 분리 
+
+- SQL 튜닝(성능 최적화)을 할 때 "서브쿼리 IN 구조는 가급적 JOIN이나 CTE로 바꿔라"가 대원칙
 
 - 16일 이후는 가격 고정이라 그룹바이하고 해빙 절에서 최소 값(처음 나타난 값)이 기준일 보다 큰 경우만 찾아줌
 
@@ -13,7 +15,39 @@ https://leetcode.com/problems/product-price-at-a-given-date/
 * 셔틀 구조: 바깥 테이블(p1)이 안쪽(p2)한테 "내 아이디 줄 테니까 검사해봐" 하고 조건 전달.
 * 빈손(못 찾아야) 통과: 안쪽 서브쿼리가 '빈손(False)'으로 돌아와야 최종 합격시켜서 10원 낙찰
 
-1번 union all 방식 
+- union distinct는 중복을 제거하는데, 한 컬럼만 보는게 아니라 모든 컬럼이 같은 값이여야 중복으로 보고 제거한다. 
+
+
+1-1번. CTE, union all, inner join 방식 
+- 가상의 임시 테이블(CTE)을 딱 필요한 만큼 메모리에 예쁘게 만들어두고, 원본 테이블과 JOIN을 걸어서, 
+데이터베이스 엔진이 인덱스를 타서 초고속으로 매칭하기 아주 좋은 구조야. 가독성도 훌륭해.
+
+with before_16 as 
+(select product_id, max(change_date) as change_date
+from products 
+where change_date <= '2019-08-16'
+group by product_id)
+
+select b.product_id, p.new_price as price
+from before_16 b join products p
+on p.product_id = b.product_id and p.change_date = b.change_date
+
+union all
+
+select product_id, 10 as price
+from products
+GROUP BY product_id
+HAVING MIN(change_date) > '2019-08-16';
+
+-- 이 부분 where로 하면 전체 데이터가 나와버림. 
+-- 그룹을 지어놓고 역사적 첫 데이터 MIN()이 16일 이후인 것만 찾음 
+
+- 태어나서 처음으로 가격이 바뀐 날짜조차도 16일 이후인 녀석들만 골라내야 해.
+- 그래서 컴퓨터한테 제품별로 방을 묶어두고(GROUP BY product_id), 
+그 방에서 가장 오래된 역사적 첫 기록(MIN(change_date))을 꺼내오라고 하는 거야.
+---------------------------------------------------------------
+
+1-2번 subquery not in, union all, not exists 방식 
 
 -- 1. 지정일 이전 기록이 있는 제품들의 최신 가격 구하기
 SELECT product_id, new_price AS price
@@ -44,6 +78,7 @@ WHERE NOT EXISTS (
 );
 
 ---------------------------------------------------------------
+
 
 2번. window function() 
 
