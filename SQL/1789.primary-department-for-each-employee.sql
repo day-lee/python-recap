@@ -1,5 +1,8 @@
 https://leetcode.com/problems/primary-department-for-each-employee/
 
+집합적 사고(Set-oriented Thinking)
+"부서 수가 1개인 직원 집합"과 "부서 수가 여러 개이면서 대표 부서인 직원 집합"의 합집합 구하기 
+
 - 아이디어는 맞았는데 조합을 잘못했다. 80점
 - 윈도우 함수로 해당 직원 부서 개수를 구해두고, count(department_id) over(partition by employee_id) 이 CTE에서 카운트가 1이거나 flag가 y인 직원만 골라서 필터링해준다. 
 - union 로 카운트가 1인 직원 + flag가 Y인 직원을 묶어줄 수도 있다. union 을 쓰면 중복을 줄일 수 있다. 
