@@ -18,17 +18,22 @@ employee_id in (select employee_id from employee group by employee_id having cou
 2. 유니온
 - N 이면서 카운트1만 걸러서 + Y만 걸러서, 교집합 없으니 union all 괜찮음  
 - 실무에서 안정적, 스캔은 두번하게됨 
+- UNION 기본값이 UNION DISTINCT임 UNION ALL과 비교했을 때 중복 검사를 하느라 성능이 조금 느릴 수 있음 
+- 두개가 완전한 독립 집합이므로 distinct를 건너 뛰면 성능 최적화 가능 
+- 대신 primary_flag = 'N'을 확실하게 표시해서 안정화. 여기서 MAX(primary_flag) = 'N'를 쓴 이유는 having 절이기 때문.
+대표 값이 필요하므로 어그리게이션 써야함. (알파벳 순서로 보면 'N'이 'Y'보다 앞섬(N < Y).)
 
 select employee_id, department_id
 from employee
 group by employee_id 
-having count(department_id) = 1 
+HAVING COUNT(department_id) = 1 AND MAX(primary_flag) = 'N'
+
+UNION ALL
 
 union 
 select employee_id, department_id
 from employee
-where primary_flag = 'Y'
-
+WHERE primary_flag = 'Y';
 ---
 3. 윈도우 펑션 
 - row_number 지정 후 Y의 경우 1을 부여함. N은 한개밖에 없으니 1, rn 1만 필터링 
