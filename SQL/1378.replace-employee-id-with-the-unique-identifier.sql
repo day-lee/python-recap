@@ -1,0 +1,17 @@
+https://leetcode.com/problems/replace-employee-id-with-the-unique-identifier
+
+# LEFT JOIN의 드라이빙 테이블 선정 기준
+- LEFT JOIN의 driving table은 절대 데이터가 유실되면 안되는 테이블이어야한다. 이 문제에서는 이름 name이 꼭 있어야한다. 
+- "특정 data loss가 나면 안되는 경우 left join을 고려한다."
+- 오답 이유: NULL을 만들어야한다는 생각이 정보가 없어야한다... 로우수 적은 unique 테이블을 기준으로 삼자. 이렇게 이어진 것 같다. 
+- 직관 오류를 인지하고 데이터가 없어지면 안되는 테이블을 드라이빙으로 삼자. 
+
+- Since not all employees have a unique ID, 
+we use a LEFT JOIN to ensure that all employees are included, even those without a unique ID.
+
+
+select u.unique_id as unique_id, e.name
+from 
+employees e 
+left join employeeUNI u 
+on u.id = e.id
