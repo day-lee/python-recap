@@ -1,14 +1,18 @@
 https://leetcode.com/problems/average-selling-price
 
-- date_col between a and b 
-- date_col >= a and date_col <= b
+날짜 date 다루기
+- date_col between a and b: 가독성 좋음 
+- date_col >= a and date_col <= b : 시간까지 고려해야하면 이게 정확함 
 
+left join 
+- 가격은 등록되어 있지만 한 번도 안 팔린 제품까지 유실(Data Omission) 없이 살릴 수 있도록 
+
+coalesce(col, 0)
+- NULL인 경우 (한번도 안팔린 경우)에는 0으로 표시하라는 조건이 있음 
 
 -- 프라이스에 유닛솔드 정보를 left 로 붙인다. 날짜 조건, id 
 -- prices 테이블 기준으로 unitSold를 left join 해야 안팔린것도 계산이 가능하다. no data loss 
-
 -- price * units 해서 sold price 총함계 만든다 
-
 -- 그다음에 그룹바이를 해서 총계 
 -- coalesce로 null 처리 
 
