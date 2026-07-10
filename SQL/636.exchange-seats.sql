@@ -5,14 +5,14 @@ https://leetcode.com/problems/exchange-seats
 
 select
 (case 
-when id % 2 = 1 and id != (select max(id) from seat) then id + 1
--- when id % 2 = 1 and  id = (select max(id) from seat) then id 
-when id % 2 = 1 then id  -- 마지막 숫자이면서 홀수인 경우는 위에서 다뤘으니 여기선 홀수인 것만 체크
-else id - 1 
-end) as id, student
-from seat 
-order by id
-
+-- 홀수면서 마지막 숫자
+when id % 2 = 1 and id = (select max(id) from seat) then id 
+when id % 2 = 1 then id + 1 -- 홀수
+else id - 1  -- 짝수
+end) as id,
+student
+from seat
+order by id asc
 
 
 
