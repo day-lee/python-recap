@@ -27,21 +27,22 @@ from weather)
 -- select * from prev_temp
 select id as Id from prev_temp 
 where prev_temp < temperature and 
- datediff(recordDate, prev_date) = 1
-
+--  datediff(recordDate, prev_date) = 1
+prev_date = date_sub(recordDate, interval 1 day) 
 
 
 2. SELF JOIN 
-- SQL에서 ON 절은 단순히 '똑같은 값 연결하기'가 아니라, 두 테이블을 합칠 때 통과해야 하는 '합격 조건문(Filter)'
+- SQL에서 ON 절은 단순히 '똑같은 값 연결하기'가 아니라, 두 테이블을 합칠 때 통과해야 하는 '합격 조건문(Joining condition)'
 - "w1의 날짜에서 w2의 날짜를 뺐을 때 정확히 1이 나온다(True)면, 이 두 테이블의 로우를 붙여줘."
-- DATEDIFF(날짜A, 날짜B)는 항상 [날짜A] - [날짜B]로 계산해. 즉, 앞의 날짜에서 뒤의 날짜를 빼는 거지. 
+
+- DATEDIFF(날짜A, 날짜B)는 항상 A-B로 계산해. 즉, 앞의 날짜에서 뒤의 날짜를 빼는 거지. 
 - DATEDIFF('2026-07-02', '2026-07-01') ➡️ 7월 2일 - 7월 1일 = 1 (정답 ⭕) 미래 - 과거: 양수
 - DATEDIFF('2026-07-01', '2026-07-02') ➡️ 7월 1일 - 7월 2일 = -1 
 - 컴퓨터는 이 조건문을 보고 "(w1의 날짜) - (w2의 날짜) = 1" 인 조합만 찾아서 가로로 붙여줘. 
 
 - ON 절에 똑같은 키 매칭(=)이 아니라 함수나 연산이 들어가면 컴퓨터는 Full Scan을 해서 성능이 안좋다. 
 - 일반적으로 데이터베이스는 날짜 컬럼에 정렬 책갈피(인덱스)를 만들어둔다.
-- 성능을 지키려면 한쪽 컬럼은 아무런 가공도 하지 않은 순수한 상태(w2.recordDate = ...)로 두고 반대편을 계산하는 식으로 쿼리를 튜닝해야 한다!
+- "성능을 지키려면 한쪽 컬럼은 아무런 가공도 하지 않은 순수한 상태(w2.recordDate = ...)로 두고 반대편을 계산하는 식으로 쿼리를 튜닝해야 한다!"
   ON w2.recordDate = DATE_SUB(w1.recordDate, INTERVAL 1 DAY) subtract 1일이니까 하루전날
 
 --
@@ -64,9 +65,10 @@ where w1.temperature > w2.temperature
 
 SELECT w1.id
 FROM Weather w1
-JOIN Weather w2 
-ON w2.recordDate = DATE_SUB(w1.recordDate, INTERVAL 1 DAY)
-WHERE w1.temperature > w2.temperature;
+JOIN Weather w_prev
+-- 전날의 날짜가 w1의 날짜에서 하루 전날인 경우만 조인 
+ON w_prev.recordDate = DATE_SUB(w1.recordDate, INTERVAL 1 DAY)
+WHERE w1.temperature > w_prev.temperature;
 
 
 ''' 하루 전날이랑 조인하면 이렇게 이쁘게 연결됨 
