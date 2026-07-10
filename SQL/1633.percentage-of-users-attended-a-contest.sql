@@ -2,7 +2,7 @@ https://leetcode.com/problems/percentage-of-users-attended-a-contest
 
 
 - aggregation 조합을 한번에 쓰면 괄호 하나씩 빠트리기 쉽다. 
-- 일단 한개씩 구하고 조립을 하자. 
+- 일단 한개씩 count() 구하고 조립을 하자. 
 - 혹시 avg()로 한번에 구할 수도 있는지 고려는 해보자.
 
 - ORDER BY는 SELECT보다 늦게 실행되는 유일한 절이다. 
