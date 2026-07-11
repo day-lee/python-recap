@@ -16,6 +16,8 @@ where p1.id > p2.id
 왼쪽의 테이블 이메일을 기준으로 하나씩 다 비교해나감 
 (p1) id=1, john  ↔  (p2) id=1, john
 (p1) id=1, john  ↔  (p2) id=3, john
+
 (p1) id=2, bob   ↔  (p2) id=2, bob
-(p1) id=3, john  ↔  (p2) id=1, john  ★
+
+(p1) id=3, john  ↔  (p2) id=1, john  ★ DELETE
 (p1) id=3, john  ↔  (p2) id=3, john
