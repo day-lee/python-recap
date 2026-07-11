@@ -28,7 +28,8 @@ WITH total AS (
 friend_counts AS (
     SELECT id, COUNT(*) AS num,
            -- 친구 수(num)가 많은 순으로 순위를 매김 (공동 1등은 같은 순위)
-           DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS rnk
+           -- RANK()는 컬럼을 인자로 필요로 하지 않음. order by 정렬 기준은 필요함 
+           DENSE_RANK() OVER(ORDER BY COUNT(*) DESC) AS rnk
     FROM total 
     GROUP BY id
 )
