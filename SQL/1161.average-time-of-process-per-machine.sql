@@ -3,6 +3,10 @@ https://leetcode.com/problems/average-time-of-process-per-machine
 조건부 집계 (conditional aggregation)
 - 처음 이 문제를 풀 때 start 인 테이블과 end인 테이블을 조인해서 풀려고함. 똑같은 테이블 두번 읽으니 성능이 좋지않다. 
 - CASE WHEN을 사용하면 full scan 한번에 start랑 end 계산을 끝낸다. 대용량 데이터 다루기 좋음. 
+- 조건 검사를 먼저 하고나서 합산은 맨 마지막에 하는 것임. 조건에서 필터링했는데 합산을 바로 못함. 
+  주머니 속에서 조건에 맞는 알맹이(로우)들만 쏙쏙 골라낸 뒤, 마지막에 합친다.
+    안되는 이유.: CASE WHEN activity_type = 'start' THEN SUM(timestamp) END -> 순서가 꼬여버린다. sum()이 먼저 되서 다 더해버린 뒤에 조건을 걸어버리기 때문에 원하는 결과가 안나옴.
+
 - 아래처럼 분리해서 써놓고나서 나누기하고 라운드 붙이기. 
 select 
 machine_id,
