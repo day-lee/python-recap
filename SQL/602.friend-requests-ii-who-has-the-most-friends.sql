@@ -7,6 +7,8 @@ https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends
 --
 1. union all 과 LIMIT 1 
 - count()가 딱 하나의 결과만 있으면 깔끔하게 풀리지만, 만약 동점자가 나오면 다른 order by 조건을 추가해줘야한다. 
+- union all로 중복 제거하지 않고서 합쳐준 뒤에, 같은 아이디 끼리 그루핑해서 전체 카운트로 순서대로 배치하고 그중 첫번째 반환한다. 
+- 이 방법은 동점자가 존재하면, 그 중 한명만 반환한다. 
 with total as (
 select requester_id as id from RequestAccepted
 union all 
@@ -18,7 +20,8 @@ order by num desc limit 1
 --
 2. 윈도우 함수 DENSE_RANK() 
 - 공동1등이 존재하다면, 그 모든 사람을 다 출력해준다. 
-- 중첩 cte로 처음 베이스는 나타난 모든 id를 줄세운 뒤, 그 베이스에서 전체 카운트를 기준으로 dense_rank()를 만들어서 조건절에서 rk = 1을 모두 뽑아줌   
+- 중첩 cte로 처음 베이스는 나타난 모든 id를 합쳐준 뒤,  
+  그 베이스에서 전체 카운트를 기준으로 dense_rank()를 만들어서 조건절에서 rk = 1을 모두 뽑아줌   
 
 WITH total AS (
     SELECT requester_id AS id FROM RequestAccepted
@@ -29,6 +32,7 @@ friend_counts AS (
     SELECT id, COUNT(*) AS num,
            -- 친구 수(num)가 많은 순으로 순위를 매김 (공동 1등은 같은 순위)
            -- RANK()는 컬럼을 인자로 필요로 하지 않음. order by 정렬 기준은 필요함 
+           -- order by 기준으로 집계 함수가 올 수 있음 
            DENSE_RANK() OVER(ORDER BY COUNT(*) DESC) AS rnk
     FROM total 
     GROUP BY id
