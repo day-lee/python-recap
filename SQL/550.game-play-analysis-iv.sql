@@ -35,7 +35,17 @@ JOIN activity a2
     AND a2.event_date=DATE_ADD(a1.first_login, INTERVAL 1 DAY)
 
 
-
+-- CTE 버젼 
+WITH FirstLogin AS (
+    SELECT player_id, MIN(event_date) AS first_date
+    FROM activity
+    GROUP BY player_id
+)
+select round((count(a.player_id) / (select count(distinct player_id) from activity)), 2) as fraction
+From activity a 
+inner join firstlogin f 
+on a.player_id = f.player_id 
+and a.event_date = date_add(f.first_date, interval 1 day)
 
 ------------------------------------------------------------------
 -- 필터링을 많이 해두고 시작할 수 있는 조건을 찾는게 중요하다 
