@@ -1,5 +1,8 @@
 https://leetcode.com/problems/queries-quality-and-percentage
 
+aggregate window functions
+https://datalemur.com/sql-tutorial/sql-aggregate-window-functions
+
 누적 합 Running Sum 
 - 윈도우 함수로 누적합 구할 수 있음 
 - cte에서 turn 기준으로 정렬후 몸무게 누적합 컬럼추가 
