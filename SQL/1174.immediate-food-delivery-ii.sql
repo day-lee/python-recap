@@ -12,6 +12,20 @@ https://leetcode.com/problems/immediate-food-delivery-ii
 - 조인은 새롭게 덧붙일 필드가 있지 않은 이상 지양해야함. - 너무 복잡해짐.
 
 
+- cte, inner join 
+-- 가상의 임시 테이블을 생성함. 
+-- 테이블 3번 스캔 
+with f_date as (select customer_id, min(order_date) as f_date
+from delivery 
+group by customer_id) 
+select round((count(*) / (select count(*) from f_date)) * 100, 2) as immediate_percentage
+from delivery d join f_date f on d.customer_id = f.customer_id and
+d.customer_pref_delivery_date = f.f_date and d.order_date = f.f_date
+
+
+- where in 패턴 
+-- 테이블 2번 스캔 
+-- 대용량 데이터에는 where in 패턴이 인덱스를 탈 수 있어 유리함 
 Select 
 -- 조건부 집계로 바로 avg()를 구함
     round(avg(order_date = customer_pref_delivery_date)*100, 2) as immediate_percentage
