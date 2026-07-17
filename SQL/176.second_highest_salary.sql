@@ -1,6 +1,10 @@
+https://leetcode.com/problems/second-highest-salary/description/
+
 - offset은 결과를 skip 해서 보여줌: 1은 건너뛰고 2번째 결과를 보여줌. 리미트 다음에 옴
+- offset은 건너뛰기 
 - 스칼라 서브쿼리: 딱 하나의 결과 값만 올 수 있음 
 
+- 무조건 group by를 쓰려는 경향이 있는데, 고유 값만 남기기 위한거라면 `distinct`를 써야한다. 
 - NULL fallback trick: 에러나 빈 결과 방지.
 - 오라클에서는 select (...) as a from dual; 이런식임 
 - 밖에서 select () 한 번 더 감싸서 쓴 이유는 NULL을 강제로 반환하기 위함
