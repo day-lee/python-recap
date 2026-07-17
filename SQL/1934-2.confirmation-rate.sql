@@ -5,6 +5,8 @@ https://leetcode.com/problems/confirmation-rate
 - count(col)은 NULL은 제외하고 숫자를 센다!! 로우가 존재해도 null 이면 0이 리턴됨 
 - 집계 함수는 null을 계산에서 제외한다. 
 - coalesce()는 가장 마지막에 감싸줘야한다. 연산 결과로 null이 나올 수도 있으니 (zero division) 가장 마지막에 대응해줌 
+- SUM() / COUNT() 이 구조는 AVG()로 바꿀 수 있다. 
+- SUM(action='confirmation')은 MySQL에서만 작동하므로 표준인 CASE 구문을 활용하는 방법도 머릿속에 넣어놓자. 
 
 SELECT 
     s.user_id,
@@ -23,6 +25,15 @@ FROM signups s
 LEFT JOIN confirmations c USING (user_id)
 GROUP BY s.user_id;
 
+-- 
+mysql 방식
+- sum(action = 'confirmed')가 mysql에서는 작동하지만 표준은 아니므로 
+  case when c.action = 'confirmed' then 1 else 0 end 으로 바꿔서 쓰는게 좋음 
+
+select user_id,  coalesce((round((sum(action = 'confirmed') / count(c.user_id)), 2)), 0) as confirmation_rate
+from signups s left join confirmations c 
+using (user_id)
+group by user_id
 
 
 인덱스 
