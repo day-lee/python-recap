@@ -63,6 +63,9 @@ series는 1차원 column 클래스
 type(csv_data['order_date'][0] 단 한개의 스칼라 값 
 .dt 는 데이트타임 accessor: 데이터를 날짜/시간으로 형변환 
 pivottable은 데이터 그룹화, 내부적으로는 groupby를 거쳐서 만들어짐. 시각적 보고서 확인용 
+
+series 컬럼 클래스에서 월을 추출함. 
+피봇테이블로 만들어줌 index는 가로축, columns는 세로축, values는 값, aggfunc는 집계함수, fill_value는 결측치 처리
 """
 csv_data['order_date'] = pd.to_datetime(csv_data['order_date'])
 # print(type(csv_data['order_date'])) #<class 'pandas.Series'>
