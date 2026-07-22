@@ -12,6 +12,11 @@ https://leetcode.com/problems/monthly-transactions-i
 - 더 작게 쪼갤 수 없는 최소 그룹단위는 무엇인가? group by를 먼저 적고 시작한다. 
 - 조건별 집계는 case when 보다 조건식 연산 SUM(state='approved') -> 1 or 0 활용
 - 날짜 함수는 문자열 날짜일때 LEFT(date, 7) 으로 잘라서 쓰는 것이 쉬움 
+- month라는 alias를 select 문에서 지정해놓고 group by에서 사용했는데, SQL 표준에서는 허용되지 않아서 연산식 그대로 써야한다. 
+    `GROUP BY country, DATE_ORMAT(trans_date, '%Y-%m')`
+    실행순서: FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY  
+- 별칭은 ``백틱이나 생략하는게 표준이다. 
+
 
 모범 답안
 SELECT 
@@ -20,11 +25,12 @@ SELECT
     COUNT(id) AS trans_count,
     SUM(state = 'approved') AS approved_count,
     SUM(amount) AS trans_total_amount,
-    SUM((state = 'approved') * amount) AS approved_total_amount
+    -- SUM((state = 'approved') * amount) AS approved_total_amount -- mysql에서는 가능하지만 다른 DB에서는 안됨
+    SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) AS approved_total_amount
 FROM 
     Transactions
-GROUP BY 
-    month, country;
+-- GROUP BY country, month;
+GROUP BY country, DATE_FORMAT(trans_date, '%Y-%m')
 
 
 --
