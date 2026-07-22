@@ -30,12 +30,19 @@ It 1 200 "No Promotion' 2124,86 0.0] [2 200 *PROMO_2'4283.22 2110.16] [3 200 No 
 import pandas as pd
 import numpy as np 
 import os 
+from pathlib import Path 
+
+# 현재 실행중인 파일의 절대경로와 그 부모 폴더를 가져옴 
+current_dir = Path(__file__).resolve().parent 
 
 # print(os.getcwd())
-# ./orders_codebar.csv
-csv_dir = r"/Users/dayeonlee/Documents/Projects/26/python-recap/practice/orders_codebar.csv"
-csv_data = pd.read_csv(csv_dir)
-# print(type(csv_data))
+# # ./orders_codebar.csv
+# csv_data = pd.read_csv(csv_dir)
+# # print(type(csv_data))
+
+csv_path = current_dir  / "sales_data_missing_pandas84.csv"
+# print(csv_path)
+csv_data = pd.read_csv(csv_path)
 
 #TODO 1. Replace missing values in the promotion_id column with "No Promotion" string.
 """
