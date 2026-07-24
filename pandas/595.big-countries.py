@@ -15,3 +15,9 @@ def big_countries(world: pd.DataFrame) -> pd.DataFrame:
 
 
 2. loc[]이용 인덱싱
+# df.loc[조건식, [열 리스트]]: 조건 필터링과 선택한 열만 df로 리턴함 
+def big_countries(world: pd.DataFrame) -> pd.DataFrame:
+    big_condition = (world['area'] >= 3000000 ) | (world['population'] >= 25000000)
+    return world.loc[big_condition, ['name', 'area', 'population']].copy()
+
+- best practice: `df.copy()`를 붙이면 독립된 df가 되어 원본 df에 영향을 주지 않음. 
