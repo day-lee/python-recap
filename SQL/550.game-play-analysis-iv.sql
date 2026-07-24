@@ -47,6 +47,29 @@ inner join firstlogin f
 on a.player_id = f.player_id 
 and a.event_date = date_add(f.first_date, interval 1 day)
 
+
+-- window function 버젼
+- row_number() 사용해서 첫 로그인 날짜를 구함
+- lead()로 다음에 오는 로우 구함(정렬해서 날짜순 다음에 오는 로우, 날짜순으로 바로 다음날이 아닐수도 있음) 
+- 랭크로 1인것만 필터링 해놓고, 첫 로그인과 다음 로그인의 날짜 차이가 datediff(미래, 과거) = 1 인 것만 카운팅함 * 인자 순서 주의 
+
+WITH ranked_activity AS (
+    SELECT 
+        player_id, 
+        event_date,
+        ROW_NUMBER() OVER(PARTITION BY player_id ORDER BY event_date) as rn,
+        LEAD(event_date) OVER(PARTITION BY player_id ORDER BY event_date) as next_date
+    FROM activity
+)
+SELECT 
+    ROUND(
+        COUNT(CASE WHEN DATEDIFF(next_date, event_date) = 1 THEN 1 END) 
+        / COUNT(DISTINCT player_id), 2
+    ) AS fraction
+FROM ranked_activity
+WHERE rn = 1;
+
+
 ------------------------------------------------------------------
 -- 필터링을 많이 해두고 시작할 수 있는 조건을 찾는게 중요하다 
 -- 
