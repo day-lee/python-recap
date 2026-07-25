@@ -11,9 +11,17 @@
 def merge_and_sort_names(*args):
     pass
 
-names_set = set() 
-for name in args:
-    names_set.update(name)
+
+
+
+
+
+
+
+
+
+
+
 
 """ 모범 답안 
 1. 가독성 좋은 list 연장 extend 

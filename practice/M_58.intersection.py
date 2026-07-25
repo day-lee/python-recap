@@ -25,7 +25,7 @@ def find_intersection(strArr):
 
 
   # #best practice: 숫자가 담긴 문자열을 처리할 때는 숫자 타입으로 변환하는 것이 안전함. 
-  # first = set(int(num) for num in strArr[0].split(","))
+  # first = {int(num) for num in strArr[0].split(",")}
   # second = [int(num) for num in strArr[1].split(",")]
 
   # # in operator with set() for faster lookup

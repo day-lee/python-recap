@@ -70,8 +70,8 @@ def question_10():
     #         result_dict[user] = amount 
 
 
-    print(f"10번 결과: {result_dict}")
-    return result_dict
+    # print(f"10번 결과: {result_dict}")
+    # return result_dict
 
 
 if __name__ == "__main__":

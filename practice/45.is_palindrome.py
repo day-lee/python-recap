@@ -26,14 +26,51 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 2. slicing [::]
 
 """
-#floor division
+# list comprehension, join 
+# slicing
+def isPalindrome(s:str) -> bool:
+    return 
 
 
 
-# # 1. two pointer 
-# # 1. clean the data: lower(), replace(), isalnum() w/ for loop, list comprehension, join()
 
-# # 2. first, end is same, loop through each index, range(len())/ 2, if condition False return early, enumerate.. 
+
+
+
+
+
+
+
+
+
+
+
+""" 모범 답안
+def isPalindrome(s:str) -> bool:
+    # list comprehension to clean the string and check alphanumeric
+    # isalnum() 공백을 걸러줌 
+    clean_str = "".join([char.lower() for char in s if char.isalnum()])
+    # floor division or slicing 
+    return clean_str == clean_str[::-1]
+"""
+
+# floor division // 을 써서 for loop에서 비교할 수도 있지만... slicing이 가독성과 성능면에서 나음 
+# def isPalindrome(s:str) -> bool:
+#     cleaned_str = s.lower().replace(" ", "")
+#     new_str = ""
+#     for char in cleaned_str:
+#         if char.isalnum():
+#             new_str += char
+
+#     for i in range(len(new_str) // 2):
+#         if new_str[i] != new_str[len(new_str) -i -1]:
+#             return False
+#     return True
+
+# 1. two pointer 
+# 1. clean the data: lower(), replace(), isalnum() w/ for loop, list comprehension, join()
+
+# 2. first, end is same, loop through each index, range(len())/ 2, if condition False return early, enumerate.. 
 
 # def isPalindrome(s:str) -> bool:
 #     cleaned_str = "".join([char.lower() for char in s if char.isalnum()])
@@ -43,12 +80,10 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 #             return False
 #     return True 
         
-# # 2.slice 
-
+# # # 2.slice 
 # def isPalindrome(s:str) -> bool:
 #     cleaned_str = "".join([char.lower() for char in s if char.isalnum()])
 #     return cleaned_str == cleaned_str[::-1]
-
 
 # # two pointer 
 # def isPalindrome(s:str) -> bool:
@@ -66,9 +101,10 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 #     return True
 
 # slice() 메소드 활용
-def isPalindrome(s:str) -> bool:
-    cleaned_s = "".join(char.lower() for char in s if char.isalnum())
-    return cleaned_s == cleaned_s[::-1] # pythonic string reversal 
+# def isPalindrome(s:str) -> bool:
+
+    # cleaned_s = "".join(char.lower() for char in s if char.isalnum())
+    # return cleaned_s == cleaned_s[::-1] # pythonic string reversal 
 
    #슬라이싱은 [시작:끝:증감] 구조. 시작 끝을 비우면 전체 대상. 1은 앞에서부터 1칸씩 더하면서 움직임. -1은 뒤에서부터 1칸씩 움직(반대로) 
    # [::1]은 C언어 레벨에 최적화됨 속도가 빠르다.

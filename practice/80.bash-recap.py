@@ -4,7 +4,7 @@
 mkdir -p (parents 옵션) 만약 mkdir parents/sub/deep 처럼 깊은 하위 디렉토리를 한번에 만들려고 하면 오류가난다. 
 -p를 주면 차례로 다 만들어줌 
 
-lsof(List Open Files)는 어떤 프로세스가 포트 쓰는지 확인 (네트워크 포트도 파일로 취급해서 files)
+lsof(List Open Files)는 어떤 프로세스가 포트 쓰는지 확인 (네트워크 포트도 파일로 취급#해서 files)
 -i 인터넷 네트워크 조회, -t (terse: 간결한) PID 추출 
 
 | 앞 출력 결과 뒤로 넘김 
