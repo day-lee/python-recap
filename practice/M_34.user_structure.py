@@ -38,7 +38,7 @@ def question_15():
    
 
 
-    inverted_dict = {}
+    # inverted_dict = {}
 
     # TODO: user_preferences를 순회하며 데이터를 역변환하고 정렬하세요.
 
@@ -51,23 +51,50 @@ def question_15():
 
 
 
+
+    # 1. dict.get() : doesn't update dictionary. returned data doesn't change the original data. have to assign it to a variable to keep the value
+    # 2. dict.setdefault(key, default): returning an actual data in the memory, can modify directly 
+    # 3. collections library defaultdict(list): starting by assigning the default data type, modify data directly 
+
+    # Start with sorted data. use items() for dict key sorting. sorted(user_preferences.items())
+    # sorted_dict = sorted(user_preferences.items())
+
+
+    # 1.inverted_dict = {}
+    # for name, lang in sorted_dict:
+    #     inverted_dict[lang] = inverted_dict.get(lang, []) + [name]
+    # print(inverted_dict)
+
+    # 2.inverted_dict = {}
+    # for name, lang in sorted_dict:
+    #     inverted_dict.setdefault(lang, []).append(name)
+    # print(inverted_dict)
+
+    # 3.from collections import defaultdict 
+
+    # inverted_dict = defaultdict(list)
+
+    # for name, lang in sorted_dict:
+    #     inverted_dict[lang].append(name)
+    # print(inverted_dict)
+
     """ 모범 답안
     미리 정렬해놓고 순회하기. 
 
-    0. defaultdict()
+    0. defaultdict() -> 실무 대용량 데이터에서 많이 쓰는 표준 
     inverted_dict = defaultdict(list)
     for name, stack in sorted(user_preferences.items()):
         inverted_dict[stack].append(name)
     final_dict = dict(inverted_dict) # defaultdict 클래스 출력하지 않고 딕셔너리 형태로 변환 
 
     
-    0. setdefault()
+    0. dict.setdefault(key, default_value)
     inverted_dict = {}
     for name, stack in sorted(user_preferences.items()):
         inverted_dict.setdefault(stack, []).append(name)
 
         
-    1. dict.get()
+    1. dict.get(key, default_value)
     dict에 items()를 붙인뒤 sorted를 만들면 키를 기준으로 정렬한다. 튜플 첫번째 요소 
     [('Alice', 'Python'), ('Bob', 'Java'), ('Charlie', 'Python'), ('Daniel', 'Java')]
     dict.get()으로 디폴트 값 추가, append() 대신 리스트 더하기 처리 
@@ -98,8 +125,8 @@ def question_15():
 
 
 
-    print(f"15번 결과: {inverted_dict}")
-    return inverted_dict
+    # print(f"15번 결과: {inverted_dict}")
+    # return inverted_dict
 
 
 if __name__ == "__main__":
