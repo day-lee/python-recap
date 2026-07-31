@@ -8,7 +8,7 @@ https://leetcode.com/problems/count-salary-categories/
 - 이미 다 계산 된 뒤에 필터링된 적은 로우에서 조인 부하가 가장 적음
 - 선집계 후 카테고리를 조인(3건 조인) 
 - group by 1은 첫번째 컬럼 category를 의미함. 
-- union all은 세로 vertical 결합임. 
+- union all은 세로 vertical 결합임. Select low, average, high 로 연결하면 가로로 확장됨 주의.
 
 | category       |
 | -------------- |
