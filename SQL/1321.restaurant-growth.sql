@@ -7,6 +7,9 @@ https://leetcode.com/problems/restaurant-growth
     range between 6 preceding and current row 
     (rows between은 연속 날짜가 아니라 데이터가 존재하는 6개 행 가져옴)
     - 날짜가 연속적이지 않기 때문에 
+    - 순서가 중요하니 partition by가 아니라 order by를 사용해야한다. 
+    - 날짜! range between은 날짜가 연속적이지 않아도 6일 전부터 현재까지의 범위 가져오고,
+    - rows between은 데이터가 존재하는 6개 행 가져온다. -> 7일 윈도우 이므로 range를 쓰는게 맞다. 
 - 3. 앞 부분 불완전한 데이터 잘라내기
     직전 6일 치 데이터가 없어서 이동평균 만들 수 없음. 
     가장 첫 날짜를 구해서 거기에 6일을 더한 날짜보다 크거나 같은 데이터만 필터링 
