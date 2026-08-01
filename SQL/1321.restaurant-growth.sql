@@ -8,6 +8,7 @@ https://leetcode.com/problems/restaurant-growth
     (rows between은 연속 날짜가 아니라 데이터가 존재하는 6개 행 가져옴)
     - 날짜가 연속적이지 않기 때문에 
     - 순서가 중요하니 partition by가 아니라 order by를 사용해야한다. 
+        - 만약 id별로 구분을 해야한다면 partition by id order by visited_on을 사용하면 된다.
     - 날짜! range between은 날짜가 연속적이지 않아도 6일 전부터 현재까지의 범위 가져오고,
     - rows between은 데이터가 존재하는 6개 행 가져온다. -> 7일 윈도우 이므로 range를 쓰는게 맞다. 
 - 3. 앞 부분 불완전한 데이터 잘라내기
