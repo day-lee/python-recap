@@ -32,3 +32,16 @@ select visited_on, total_amount as amount,
 round((total_amount / 7 ), 2) average_amount
 from 7_days_window
 where visited_on >= (select date_add(min(visited_on), interval 6 day) from sum_date)
+
+
+
+심화
+고객별로 나뉘어야함 
+고객별 날짜 순서로 30일 전까지를 줄세워야함. 
+누적 주문금액을 구해야함 
+-> partition by 고객 아이디
+
+select 
+customer_id,
+sum(price) over(partition by customer_id order by order_date range between interval 30 day preceding and current row) as 30days_total_price
+from orders
