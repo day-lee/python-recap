@@ -32,7 +32,7 @@ def decode_morse(code):
             if alphabet != '?':
                 result.append(alphabet)
         result.append(" ")  # Add space between words
-    print("".join(result))
+    print("".join(result)) # "".join(list) 세퍼레이터에 join() 함수사용은 리스트를 스트링으로 합쳐주는 pythonic한 방법 
 
 decode_morse("... --- ... 3") # SOS
 decode_morse(".... . .-.. .-.. ---   .-- --- .-. .-.. -..") # "HELLO WORLD"
