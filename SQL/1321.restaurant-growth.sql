@@ -2,15 +2,17 @@ https://leetcode.com/problems/restaurant-growth
 
 사고 과정 
 - 1. 날짜 하루 단위로 매출 합계를 구한다. 
+
 - 2. 현재일 + 직전 6일 윈도우를 정의한다. (이동평균)
     날짜 순 정렬, 내 앞의 6개 행(6일전) 부터 현재행(오늘)까지 더해서 평균 
-    range between 6 preceding and current row 
-    (rows between은 연속 날짜가 아니라 데이터가 존재하는 6개 행 가져옴)
-    - 날짜가 연속적이지 않기 때문에 
-    - 순서가 중요하니 partition by가 아니라 order by를 사용해야한다. 
-        - 만약 id별로 구분을 해야한다면 partition by id order by visited_on을 사용하면 된다.
-    - 날짜! range between은 날짜가 연속적이지 않아도 6일 전부터 현재까지의 범위 가져오고,
-    - rows between은 데이터가 존재하는 6개 행 가져온다. -> 7일 윈도우 이므로 range를 쓰는게 맞다. 
+    RANGE vs ROWS
+    - (기간) "RANGE" BETWEEN "INTERVAL 6 DAY PRECEDING" AND CURRENT ROW 
+        -> 특정 날짜 범위의 모든 행을 가져와라. 
+    - (행 개수) "ROWS" BETWEEN "6 PRECEDING" AND CURRENT ROW 
+        -> 현재 행 포함 위로 6개 행을 가져온다. 날짜 조건이 없으므로 최근 7일 통계에는 부적절하다.  
+- 날짜 순서가 중요하니 partition by가 아니라 order by를 사용해야한다. 
+- 만약 id별로 구분을 해야한다면 partition by id order by visited_on을 사용하면 된다.
+
 - 3. 앞 부분 불완전한 데이터 잘라내기
     직전 6일 치 데이터가 없어서 이동평균 만들 수 없음. 
     가장 첫 날짜를 구해서 거기에 6일을 더한 날짜보다 크거나 같은 데이터만 필터링 
