@@ -6,6 +6,8 @@ https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sql.ht
 Intro - 10 minutes to pandas
 https://pandas.pydata.org/docs/user_guide/10min.html#min
 
+- SQL equivalent: LIMIT 3
+
 import pandas as pd 
 
 def selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:
