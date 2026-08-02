@@ -2,7 +2,7 @@ https://leetcode.com/problems/sales-person/
 
 - 한 번도 ~를 하지 않은 조건 
 - ~를 한번이라도 한 사람을 먼저 구하고, 그 사람들을 전체 명단에서 제외 
-- 전체 집합에서 - 부분 집합(red와 거래한 사원) = 여집합
+- 전체 집합에서 - 부분 집합(red와 거래한 사원) = 여집합 (전체에서 나를 제외한 나머지 전부 - Complement)
 
 -- not in 
 - 이름말고 sales_id로 구분해야함. 
