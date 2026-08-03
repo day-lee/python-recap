@@ -21,3 +21,9 @@ where p1.id > p2.id
 
 (p1) id=3, john  ↔  (p2) id=1, john  ★ DELETE
 (p1) id=3, john  ↔  (p2) id=3, john
+
+
+만약 조회 연산이었다면 아래 처럼 하면 최소 id로 그룹해서 조회 가능 
+select min(id) as id, email
+from person 
+group by email
