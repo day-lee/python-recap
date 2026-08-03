@@ -14,9 +14,24 @@ WHERE sales_id NOT IN (
     -- 한 번 이라도 RED와 거래한 sales_id를 추출
     SELECT o.sales_id
     FROM orders o 
-    JOIN company c ON o.com_id = c.com_id 
+    JOIN company c ON o.com_id = c.com_id -- using(com_id)
     WHERE c.name = 'RED'
 );
+
+
+-- not exists 
+- 상관 서브쿼리: 서브쿼리 내부에서 메인 쿼리 테이블 salesperson s를 참조함 
+- 조건 만족하는 데이터 찾는 즉시 스캔 early exit 중단을 하므로 성능 좋다. 
+select s.name
+from salesperson s 
+where not exists(
+select 1 
+from orders o
+join company c using(com_id)
+where o.sales_id = s.sales_id and c.name = 'RED')
+-- sales_id가 같고 회사 이름이 red인 집합에 존재하지 않아야 참이되면서 결과값에 포함됨 
+-- 데이터가 존재한다면 1을 반환하여 false 가 되고, 아무 기록이 없으면 아무것도 반환하지 않아 조건이 true가 되어 최종 출력됨. 
+
 
 
 -- group by, having sum(case when )으로 조건에 맞는 개수 세서 0인 사람만 필터링  
