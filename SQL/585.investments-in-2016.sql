@@ -8,25 +8,34 @@ https://leetcode.com/problems/investments-in-2016
 -  교집합 메인 쿼리에서 주머니 A 와 B를 동시에 만족하는 사람을 찾아야함 
 - (lat, lon) tuple 세트, 쌍으로 일치할 때만 묶음이 그룹으로 간주됨. 이 페어로 파티션 나눌 수 있음을 기억하기. 
 
+- 윈도우 함수 + aggregation 연습하기 너무 좋은 문제.
 
--- 윈도우 함수 
+-- 윈도우 함수 + aggregation
+-(lat, lon) 세트, 쌍으로 일치할 때만 묶음이 그룹으로 간주됨 
+
+-- 계산 끝낸 base table
 with cnt_insurance as (
 select tiv_2016, tiv_2015, 
 count(*) over(partition by tiv_2015) as cnt_15,
--- (lat, lon) 세트, 쌍으로 일치할 때만 묶음이 그룹으로 간주됨 
 count(*) over(partition by lat, lon) as cnt_loc
 from insurance) 
 
--- select * from cnt_insurance
-
+-- filtering 및 최종 계산 테이블
 select round(sum(tiv_2016), 2) as tiv_2016
 from cnt_insurance
 where cnt_15 > 1 and cnt_loc = 1;
 
+-- select * from cnt_insurance                조건1       조건2
+| pid | tiv_2015 | tiv_2016 | lat | lon | tiv_2015_cnt | loc |
+| --- | -------- | -------- | --- | --- | ------------ | --- |
+| 1   | 10       | 5        | 10  | 10  | 3            | 1   |
+| 3   | 10       | 30       | 20  | 20  | 3            | 2   |
+| 2   | 20       | 20       | 20  | 20  | 1            | 2   |
+| 4   | 10       | 40       | 40  | 40  | 3            | 1   |
 
 
--- CTE
--- 3번 스캔
+-- CTE & IN 
+-- 3번 스캔 지양 
 with unique_lat_lon as (select lat, lon
 from insurance
 group by lat, lon
