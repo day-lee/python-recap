@@ -24,6 +24,8 @@ https://leetcode.com/problems/product-price-at-a-given-date/
 - 가상의 임시 테이블(CTE)을 딱 필요한 만큼 메모리에 예쁘게 만들어두고, 원본 테이블과 JOIN을 걸어서, 
 데이터베이스 엔진이 인덱스를 타서 초고속으로 매칭하기 아주 좋은 구조야. 가독성도 훌륭해.
 - 3번 스캔함 
+- 변경될 수 있는 날짜를 두번 넣어줘야해서 유지보수성이 떨어짐 
+- 날짜 max(), min()으로 row_number() 윈도우 함수와 사용할 수 있는 유형 
 
 with before_16 as 
 (select product_id, max(change_date) as change_date
@@ -90,6 +92,9 @@ WHERE NOT EXISTS (
 
 2번. window function() 
 - 테이블 스캔 2번으로 끝냄 가장 빠름
+- left join + coalesce 처리시 distinct로 중복을 제거해야함. distinct는 중복제거 비용이 큼.
+ 실무에서는 마스터 테이블(기본정보)를 이용해야 성능이 안떨어짐. 
+- left join은 개수가 뻥튀기가 되므로 어떻게 해야 개수를 늘리지 않을 수 있을지 고민하다가 distinct가 나옴 
 
 ### 방법 2: WINDOW FUNCTION 방식 (판 짜서 덧붙이기)
 * 1 CTE 안에서 16일 이하 데이터만 `ROW_NUMBER() ... DESC`로 1등 뽑아두기.
@@ -108,6 +113,24 @@ SELECT DISTINCT p.product_id,
 FROM Products p
 LEFT JOIN RankedPrices rp 
        ON p.product_id = rp.product_id AND rp.rn = 1;
+
+
+
+===== distinct를 쓰지 않고, 마스터 테이블을 활용하면 성능이 더 좋음.
+-- 실무형 최적화 버전 (상품 마스터 테이블이 별도로 있을 경우)
+WITH RankedPrices AS (
+    SELECT product_id, new_price,
+           ROW_NUMBER() OVER(PARTITION BY product_id ORDER BY change_date DESC) AS rn
+    FROM Products
+    WHERE change_date <= '2019-08-16'
+)
+SELECT m.product_id, 
+       COALESCE(rp.new_price, 10) AS price
+FROM Product_Master m -- DISTINCT를 쓸 필요 없이 기본키(PK)를 가진 마스터 테이블 활용
+LEFT JOIN RankedPrices rp 
+       ON m.product_id = rp.product_id AND rp.rn = 1;
+
+
 
 
 
