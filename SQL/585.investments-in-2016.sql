@@ -25,7 +25,11 @@ select round(sum(tiv_2016), 2) as tiv_2016
 from cnt_insurance
 where cnt_15 > 1 and cnt_loc = 1;
 
--- select * from cnt_insurance                조건1       조건2
+-- select * from cnt_insurance
+- 쿼리에 윈도우 함수 집계가 두 줄 등장. 모든 로우에 집계 결과가 출력되어 나온다. 
+- 윈도우 함수가 로우 한줄 한줄마다 적용이 되어서 각 컬럼에 조건1, 조건2에 해당하는 카운트 개수가 할당이 됨. 
+- where 절로 필터링하면 최종 결과가 나옴 
+                                              조건1       조건2
 | pid | tiv_2015 | tiv_2016 | lat | lon | tiv_2015_cnt | loc |
 | --- | -------- | -------- | --- | --- | ------------ | --- |
 | 1   | 10       | 5        | 10  | 10  | 3            | 1   |
@@ -35,7 +39,7 @@ where cnt_15 > 1 and cnt_loc = 1;
 
 
 -- CTE & IN 
--- 3번 스캔 지양 
+-- 3번 스캔이라 좋은 쿼리 아님  
 with unique_lat_lon as (select lat, lon
 from insurance
 group by lat, lon
