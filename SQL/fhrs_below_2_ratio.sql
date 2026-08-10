@@ -1,7 +1,7 @@
 Conditional Aggregation 조건부 집계
 - explain으로 비교해보며 최적화 해냈다!!!! 
 
-- 로직 구상은 모집합을 정의하는데서 시작한다. 
+- 로직 구상은 모집합(Population)을 정의하는데서 시작한다. 
 where filtering은 입구컷 
 case when 은 일단 다 들여보낸 뒤 분류 
 전체 total도 필요하고, 일부 total도 필요하다면 일단 다 통과 시킨 뒤 안에서 분류해야겠다 판단. 
