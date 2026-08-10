@@ -1,6 +1,6 @@
 https://www.freecodecamp.org/learn/daily-coding-challenge/08-11
 
-- // 몫 연산자. 정수 인덱스 값 
+- // 몫 연산자 Floor division/ Integer Division. 정수 인덱스 값 
 
 
 def is_balanced(s):
