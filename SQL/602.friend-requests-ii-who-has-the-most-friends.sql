@@ -40,3 +40,13 @@ friend_counts AS (
 SELECT id, num 
 FROM friend_counts 
 WHERE rnk = 1; -- 1등인 사람들을 전부 출력
+
+
+-- NOTE
+-- group by랑 윈도우 함수를 같이 쓰는게 약간 읭스러운데...?  
+- 윈도우 함수를 그룹바이와 함께 쓸 수 있다. 
+- 실행 순서상 group by, having, "window function", select...순으로 실행한다. 
+- 그룹바이를 해둔 뒤 count(*) 집계 결과가 나올 시점에는 이미 윈도우 함수도 그룹화 된 집계 데이터를 바라보게 된다. 
+- 따라서 윈도우 함수의 order by에서 count(*) 집계 기준으로 순서를 메길 수 있게 된다. 
+- group by와 윈도우 함수를 같이 쓸 때 주의 할 점, 
+    - group by "id" 를 했다면 윈도우 함수 안의 order by, partition by 안에는 "id" 컬럼이나, count(*) 같은 집계 함수만 들어올 수 있다. SELECT 절의 규칙과 같다. 
