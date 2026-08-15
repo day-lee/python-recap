@@ -5,6 +5,9 @@ https://leetcode.com/problems/reshape-data-melt
 
 - pd.melt(df, id_vars=None, value_vars=None, var_name=None, value_name='value', col_level=None, ignore_index=True)
 
+id_vars, value_vars: id_vars 만 지정하고, value_vars를 생략하면, id_vars 제외 모든 칼럼을 대상으로 하게 됨 
+var_name, value_name 
+
 """
 frame: The DataFrame to reshape. Only required when using pandas.melt().
     - dataframe을 명시 
