@@ -1,6 +1,6 @@
 - string에 lower()를 적용하면 대문자를 소문자로 바꿔준다.
 - isAlpha()를 쓰지 않아도 된다.
-- '20abcDF'.lower()
+- '20abcDF'.lower() -> '20abcdf'
 
 base36_list = [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
