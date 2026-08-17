@@ -12,4 +12,3 @@ import pandas as pd
 def change_data_type(students: pd.DataFrame) -> pd.DataFrame:   
     students["grade"] = students["grade"].astype("int32")
     return students 
-
