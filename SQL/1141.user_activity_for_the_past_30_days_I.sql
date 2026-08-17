@@ -9,7 +9,11 @@ https://leetcode.com/problems/user-activity-for-the-past-30-days-i
 
 --  postgresql 버젼 날짜 포매팅 
 -- date between a and b 
-- 오늘을 포함해서 총 N일을 구해야 할 때: DATE_SUB(기준일, INTERVAL N-1 DAY)를 한다.
+- INTERVAL = (N-1) DAY -> 오늘 포함 총 N일 기간 구하기 
+    전체 7일: INTERVAL 6 DAY -> 과거 6일 + 오늘 1일 
+
+    1일전이면 어제, 오늘 이니까, 2일 기간: 어제(-1) between 오늘 
+.. 30일 기간: -29 btw 오늘 
 
 select 
 activity_date as day,
