@@ -5,6 +5,10 @@ select emp_id, event_day,  (sum(out_time) - sum(in_time)) as total
 from employees
 group by event_day, emp_id
 
+- 판다스는 파생 컬럼을 먼저 생성하고나서 그룹바이에 붙여주는 접근
+- SQL group by: groupby(['col1', 'col2'])
+- SUM: seriese.sum(), df.sum() 
+- AS: rename(columns={'old':'new'})
 
 def total_time(employees: pd.DataFrame) -> pd.DataFrame:
   
