@@ -9,6 +9,7 @@ https://datalemur.com/sql-tutorial/sql-aggregate-window-functions
 - 외부 쿼리에서 누적합이 1000 이하인 사람들 중 마지막 사람을 가져오기위해 
   누적합을 내림차순으로 정렬 후 limit 1로 마지막 사람 가져오기
 
+- Rolling sum, Moving sum은 이동합: 특정 윈도우에서 시간이 흐르면서 더해지는 것 e.g. 최근 7일간 방문자 수 합계 
 
 WITH rs AS (
     SELECT 
