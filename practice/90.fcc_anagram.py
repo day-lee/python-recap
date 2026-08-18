@@ -1,3 +1,5 @@
+https://www.freecodecamp.org/learn/daily-coding-challenge/08-16
+
 - 파이썬에서 두 리스트의 아이템 종류와 순서가 모두 같다면 두 리스트는 동등(Equal)한 리스트로 평가됨.
 - id()는 객체 메모리 주소를 보여줌. 모든 str의 값이 같게 나오는 이유는 Garbage Collection 과 Re-use 메커니즘 때문임.
 - 파이썬은 더 이상 쓰이지 않는 메모리는 즉시 해제하고 재사용함.
