@@ -10,7 +10,12 @@ https://www.freecodecamp.org/learn/daily-coding-challenge/08-16
 def are_anagrams_1(str1, str2):
     print(id(sorted(str1))) #4338399744 
     print(id(sorted(str2))) #4338399744 -> same?! 
-
+    print(id(sorted([1,2,3,4]))) # -> different
+    a = sorted(str1)
+    b = sorted(str2)
+    print(id(a)) # 4338399744
+    print(id(b)) # 4338399744 -> different! bc assigned to variable, so memory is maintained.
+    
     # Python evaluates the equality of two lists by comparing their elements in order. If both lists have the same elements in the same order, they are considered equal. 
     # list_1 = "".join(sorted(str1.lower().replace(" ", "")))
     # list_2 = "".join(sorted(str2.lower().replace(" ", "")))
