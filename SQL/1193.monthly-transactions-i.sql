@@ -1,7 +1,7 @@
 https://leetcode.com/problems/monthly-transactions-i
 
 
-조건 aggregation 
+조건부 집계 aggregation 
 - 날짜 추출: DATE_FORMAT(trans_date, '%Y-%m') 
 - mysql은 sum(state = 'approved')를 1, 0 숫자로 결과를 내주지만 
   postgresql에서는 True/False로 나와서 숫자가 아닌 타입을 SUM()할 수가 없다.
@@ -13,7 +13,7 @@ https://leetcode.com/problems/monthly-transactions-i
 - 조건별 집계는 case when 보다 조건식 연산 SUM(state='approved') -> 1 or 0 활용
 - 날짜 함수는 문자열 날짜일때 LEFT(date, 7) 으로 잘라서 쓰는 것이 쉬움 
 - month라는 alias를 select 문에서 지정해놓고 group by에서 사용했는데, SQL 표준에서는 허용되지 않아서 연산식 그대로 써야한다. 
-    `GROUP BY country, DATE_ORMAT(trans_date, '%Y-%m')`
+    `GROUP BY country, DATE_FORMAT(trans_date, '%Y-%m')`
     실행순서: FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY  
 - 별칭은 ``백틱이나 생략하는게 표준이다. 
 
