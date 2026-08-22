@@ -41,6 +41,7 @@ GROUP BY activity_date
 -- mysql 
 -- date_sub(date_col, interval N day)
 -- inclusive라서 interval 30 day 아니고 29 day 임 
+-- 2일이면 1 day, 30일이면 29 day
 
 select activity_date as day, count(distinct user_id) as active_users
 from activity
