@@ -4,7 +4,6 @@ https://leetcode.com/problems/restaurant-growth
 1. 날짜 하루 단위로 매출 합계를 구한다. 
     - 하루에도 여러 건의 주문이 있을 수 있으므로.
 
-
 2. 현재일 + 직전 6일 윈도우를 정의한다. (이동 평균)
     날짜 순 정렬, 내 앞의 6개 행(6일전) 부터 현재행(오늘)까지 더해서 평균 
     RANGE vs ROWS
@@ -21,8 +20,9 @@ https://leetcode.com/problems/restaurant-growth
     가장 첫 날짜를 구해서 거기에 6일을 더한 날짜보다 크거나 같은 데이터만 필터링 
     스칼라 서브쿼리로 구한다. 
 
+============================================
 - 유지보수, 가독성 측면에서 윈도우 함수 한번으로 리팩토링하고, 본 쿼리에서 윈도우 함수로 구한 total_amount를 /7 으로 평균 연산해줌. 
-
+- 만약 데이터에 특정 날짜가 누락된다면 (7일 중 5일만 영업한다던가) 7로 나누는 방식에는 오차가 발생할 수 있음 주의 
 with sum_date as (
     select visited_on, sum(amount) as amount
     from customer
@@ -38,7 +38,27 @@ round((total_amount / 7 ), 2) average_amount
 from 7_days_window
 where visited_on >= (select date_add(min(visited_on), interval 6 day) from sum_date)
 
+============================================
+- 정확성: AVG() 함수가 동일범위 실제 행 개수를 기준으로 평균 계산. 중간에 날짜가 비어있더라도 정확한 평균값 돌려줌 
+- 윈도우 함수 두번 호출은 연산비용 두배 
 
+with day_sum as (
+    select visited_on, sum(amount) amount
+    from customer 
+    group by visited_on
+), 
+base as(
+select 
+visited_on, 
+sum(amount) over(order by visited_on range between interval 6 day preceding and current row) amount,
+round(avg(amount) over(order by visited_on range between interval 6 day PRECEDING and current row), 2) as average_amount 
+from day_sum)
+
+select visited_on, amount, average_amount from base 
+where visited_on >= (select date_add(min(visited_on), interval 6 day) from customer)
+
+
+============================================
 
 심화
 고객별로 나뉘어야함 
