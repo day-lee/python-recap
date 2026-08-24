@@ -1,8 +1,8 @@
 https://www.freecodecamp.org/learn/daily-coding-challenge/08-25
 - str.title() 은 첫 글자 대문자, 나머지는 소문자로 바꿈.
 - str.capitalize()는 첫 글자만 대문자로 바꾼다.
-- re.sub()
-- re.split() 
+- re.sub(regex, ' ', s) replace all regex with ' ' in s
+- re.split(regex, s) returns list 
 - regex pattern은 string이다. '[_-\s]+'  # _ or - or space, one or more
 - enumerate() 는 index와 value를 동시에 접근가능.
 
