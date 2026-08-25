@@ -1,16 +1,10 @@
 1174. Immediate Food Delivery II
 https://leetcode.com/problems/immediate-food-delivery-ii
 
-- WHERE IN 패턴: where (col1, col2) in (subquery, 리스트)  
-- 체크리스트에 이름이 있는지 검사하는 필터링 기계 
-- 그룹별 최대값, 최소값 데이터 1건을 남긴다. e.g. WHERE (고객, 주문일) IN (고객별 첫 주문일 목록)
-- 존재 여부 체크: e.g. WHERE 회원ID IN (2026년 구매 회원ID 목록)
-- not in 은 리스트에 없는 것만 골라라. e.g. 아직 오더 안한 오더리스트에 없는 회원만 조회하기
+- / COUNT 를 쓰는 순간 -> AVG()로 바꿀 수 있겠다. 생각 전환. 
 
-- 첫 주문일만 뽑아내는 서브 쿼리를 만든다. 
-- 더 덧붙일 테이블이 없으므로 필터링을 위해 where in 서브쿼리 구조를 사용한다. 
-- 조인은 새롭게 덧붙일 필드가 있지 않은 이상 지양해야함. - 너무 복잡해짐.
 
+CTE & Window Function 방식
 - cte는 common table expression: 물리적으로 디스크에 테이블 저장하지 않고, 쿼리 가공 껍데기에 불과하다. 쿼리 실행시에만 존재했다 사라진다. 
 - temporary table은 진짜 물리테이블. 데이터가 너무 많으면 중간 계산 결과를 밀어넣고 인덱스 걸어 사용함. 
 
@@ -34,11 +28,30 @@ WHERE rn = 1;
 -- AVG() 는 (당일배송 성공한 주문 수) / (전체 첫 주문 수) 이것과 같아진다. 
 -- 테이블을 딱 한번만 훑으면서 조건맞는 개수와 전체 합계를 구하므로 성능상 유리하다. 
 
-- where in 패턴 
--- 전통적 RDB환경에 적합
--- 테이블 2번 스캔 
--- 대용량 데이터에는 복합 인덱스가 걸려있을 시 where in 패턴이 인덱스를 탈 수 있어 유리함 
--- 빅데이터 환경에서는 다중 열 in 문법을 지원하지 않을 수 있음 
+이렇게 만들 수도 있긴 함 
+select 
+round(sum(case when order_date = customer_pref_delivery_date then 1 else 0 end) / count( customer_id) * 100.0 ,2 ) as immediate_percentage
+from base
+where rn = 1
+
+
+=======================================================================
+Where IN 패턴 
+- WHERE IN 패턴: where (col1, col2) in (subquery, 리스트)  
+- 체크리스트에 이름이 있는지 검사하는 필터링 기계 
+- 그룹별 최대값, 최소값 데이터 1건을 남긴다. e.g. WHERE (고객, 주문일) IN (고객별 첫 주문일 목록)
+- 존재 여부 체크: e.g. WHERE 회원ID IN (2026년 구매 회원ID 목록)
+- not in 은 리스트에 없는 것만 골라라. e.g. 아직 오더 안한 오더리스트에 없는 회원만 조회하기
+
+- 첫 주문일만 뽑아내는 서브 쿼리를 만든다. 
+- 더 덧붙일 테이블이 없으므로 필터링을 위해 where in 서브쿼리 구조를 사용한다. 
+- 조인은 새롭게 덧붙일 필드가 있지 않은 이상 지양해야함. - 너무 복잡해짐.
+
+- 전통적 RDB환경에 적합
+- 테이블 2번 스캔 
+- 대용량 데이터에는 복합 인덱스가 걸려있을 시 where in 패턴이 인덱스를 탈 수 있어 유리함 
+- 빅데이터 환경에서는 다중 열 in 문법을 지원하지 않을 수 있음 
+
 Select 
 -- 조건부 집계로 바로 avg()를 구함
     round(avg(order_date = customer_pref_delivery_date)*100, 2) as immediate_percentage
