@@ -1,18 +1,26 @@
+"""
 https://www.freecodecamp.org/learn/daily-coding-challenge/08-25
 - str.title() 은 첫 글자 대문자, 나머지는 소문자로 바꿈.
 - str.capitalize()는 첫 글자만 대문자로 바꾼다.
+
+- str.split()은 공백을 지정하지 않으면 모든 공백 \s \t \n을 자동 처리해줌\
+    -> replace 체이닝에서 공백을 여러번 replace할 필요가 없음.
+
 - re.sub(regex, ' ', s) replace all regex with ' ' in s
 - re.split(regex, s) returns list 
 - regex pattern은 string이다. '[_-\s]+'  # _ or - or space, one or more
+
 - enumerate() 는 index와 value를 동시에 접근가능.
+"""
 
 # POC
 #1 
 # chaining replace() method -> not optimal 
 
 def to_camel_case(s):
-    clean_s = s.replace('-', " ").replace("_", " ").replace(" ", " ").replace("  ", " ").replace("  ", " ")
-    clean_list = clean_s.split(" ")
+    # clean_s = s.replace('-', " ").replace("_", " ").replace(" ", " ").replace("  ", " ").replace("  ", " ")
+    clean_s = s.replace('-', " ").replace("_", " ")
+    clean_list = clean_s.split() # -> split()에 공백을 지정하지 않으면 모든 공백 \s \t \n을 자동 처리해줌 
     r = ""
     for i in range(len(clean_list)):
         if i == 0:
