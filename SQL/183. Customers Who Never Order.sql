@@ -1,3 +1,5 @@
+https://leetcode.com/problems/customers-who-never-order
+
 - 체크리스트 단계를 따라가는 연습. 
 - LEFT JOIN: ~가 없는 고객, No, Never Missing... 
 - INNER JOIN: 모두 가진, 동시에 만족하는, 양쪽에 다 존재하는  
