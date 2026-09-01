@@ -5,7 +5,23 @@ https://leetcode.com/problems/product-price-at-a-given-date/
 - SQL 튜닝(성능 최적화)을 할 때 "서브쿼리 IN 구조는 가급적 JOIN이나 CTE로 바꿔라"가 대원칙
 - 대용량 데이터에서 디스크에서 데이터를 읽어오는 I/O 비용이 가장 큼. 읽는 횟수 최소화한 2번이 빠름. 
 
-- 16일 이후는 가격 고정이라 그룹바이하고 해빙 절에서 최소 값(처음 나타난 값)이 기준일 보다 큰 경우만 찾아줌
+1번 스캔, 인덱스 정렬 연산 
+- [고급 스킬] 데이터를 과거/미래로 쪼개서 합칠 생각만 했는데, 윈도우 함수 내부 ORDER BY에 우선순위 조건(Boolean)을 주면 모든 데이터를 한 줄로 세워서 한 번에 해결할 수 있구나!
+- 비즈니스 요구사항 적용: 사용자가 물건을 주문할 때 배송지를 보여줘야 해. 1순위는 사용자가 지정한 '기본 배송지'를 보여주고, 만약 기본 배송지를 지정 안 한 회원이면 '가장 최근에 추가한 배송지'를 1등으로 뽑아줘.
+
+
+with ranked_price as (
+       select product_id, new_price, change_date, 
+       row_number() over(partition by product_id
+       order by (change_date <= '2019-08-16') desc,  -- 1순위 기준일 이전 
+       change_date desc ) -- 2순위 그 안에서 최신 날짜 위로 
+ as rn from products
+) 
+
+select product_id, if(change_date <= '2019-08-16', new_price, 10) as price
+from ranked_price 
+where rn = 1; 
+
 
 ================================================================================
 
@@ -73,6 +89,7 @@ LEFT JOIN RankedPrices rp
 - 3번 스캔함 
 - 변경될 수 있는 날짜를 두번 넣어줘야해서 유지보수성이 떨어짐 
 - 날짜 max(), min()으로 row_number() 윈도우 함수와 사용할 수 있는 유형 
+- 16일 이후는 가격 고정이라 그룹바이하고 해빙 절에서 최소 값(처음 나타난 값)이 기준일 보다 큰 경우만 찾아줌
 
 with before_16 as 
 (select product_id, max(change_date) as change_date
