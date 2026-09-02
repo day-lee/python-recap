@@ -3,9 +3,10 @@ https://www.freecodecamp.org/learn/daily-coding-challenge/11-20
 
 - declarative vs imperative programming
 - Try to think of built-in functions first! 
-- max(list, len=callable)는 길이가 같은 단어가 있다면 가장 먼저 등장한 단어를 반환함 
+- max(list, key=len)는 길이가 같은 단어가 있다면 가장 먼저 등장한 단어를 반환함. len() 이용
 - re.findall(regex, str)은 패턴 일치하는 부분을 찾아 리스트로 반환함. 일치하는게 없으면 빈 리스트 리턴 
 - [a-zA-Z]+는 알파벳 대소문자 1글자 이상 연속된 것 추출 
+- r'[a-z]' 처럼 r을 붙이면 raw string이 됨: 백슬래시를 일반 문자열로 처리할 수 있음. 안그럼 \\ 처럼 두번 붙여야함. 
 
 선언형 도구: list comprehension, 내장 함수들을 먼저 떠올린다. 
 
@@ -17,7 +18,7 @@ import re
 def longest_word_optimal(sentence):
     regex = r'[a-zA-Z]+'
     words = re.findall(regex, sentence)
-    print(max(words, key=len))
+    # print(max(words, key=len))
     return max(words, key=len)
 longest_word_optimal("Hello coding challenge.") # challenge
 longest_word_optimal("A tie? No way!") # tie
