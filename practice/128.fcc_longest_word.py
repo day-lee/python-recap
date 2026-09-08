@@ -17,7 +17,7 @@ https://www.freecodecamp.org/learn/daily-coding-challenge/11-20
 import re
 def longest_word_optimal(sentence):
     regex = r'[a-zA-Z]+'
-    words = re.findall(regex, sentence)
+    words = re.findall(regex, sentence) 
     # print(max(words, key=len))
     return max(words, key=len)
 longest_word_optimal("Hello coding challenge.") # challenge
@@ -29,9 +29,9 @@ print('===========================================')
 def longest_word_1(sentence):
     clean_sentence = sentence.replace(".", '').replace("!","").replace("?","").replace("'","")
     new_list = list(reversed(clean_sentence.split()))
-    r = {len(word): word for word in new_list}
+    r = {len(word): word for word in new_list} 
     keys = sorted(r, reverse=True)
-    idx = keys[0]
+    idx = keys[0] 
     print(r[idx])
     return r[idx]
 
