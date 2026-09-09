@@ -1,6 +1,13 @@
 https://projects.datacamp.com/projects/2190
 Impact Analysis of GoodThought NGO Initiatives - intermediate sql
 
+- 언제 그룹바이를 쓰고, 언제 윈도우 함수를 써야하는가 
+    - 그룹바이는 데이터를 압축한다.
+    - 따라서 개별 데이터는 사라짐 
+    - 윈도우 함수는 데이터 유지하면서 계산도 하고 싶을 떄. 
+
+- GROUP BY로 압축하며 집계하고나서, 필요한 데이터만 JOIN으로 붙이기 
+
 List the top five assignments based on total value of donations, categorized by donor type. 
 
 - 1. 문제를 보면 테이블의 관계와 구조를 먼저 파악해야한다 
@@ -47,6 +54,7 @@ LIMIT 5;
 -- 오답 분석
 -- 잘못된 접근임. 값 합산시에는 group by로 압축해놓고 시작해야함 
 -- 윈도우 함수의 특성상 데이터를 압축하지 않고 원래 있던 행 개수를 그대로 유지하기 때문에 왜곡일어난다. 
+-- 데이터가 쌓인 형태에 따라 왜곡 일어날 수 있음 
 -- 지문이 모호하기때문에 정확히 물어봐야함. 카테고리별 5개인가 (총15개), 전체에서 5개인가
 -- highest_donation_assignments
 with base as (select assignment_id, donor_type, 
