@@ -15,7 +15,7 @@ https://www.freecodecamp.org/learn/daily-coding-challenge/11-11
 
 def count(s):
     lowered_s = s.lower()
-    vowels = 'aeiou'
+    vowels = set('aeiou')
     v = 0
     c = 0
     for char in lowered_s:
