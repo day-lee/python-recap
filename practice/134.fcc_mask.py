@@ -2,7 +2,7 @@
 # - ternary operator
 # - set thinking : index 3 or others
 # - list comprehension with enumerate to access index and value at the same time 
-
+# - separator 가 있을 땐 join, split 을 어떻게 활용하면 좋을지 고민. 
 
 def mask_2_optimized(card):
     separator = '-' if '-' in card else ' '
