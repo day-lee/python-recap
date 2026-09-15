@@ -1,10 +1,13 @@
 https://leetcode.com/problems/game-play-analysis-iv/
 
-- DATE_ADD(date_col, INTERVAL 1 DAY) : ADD_DATE()아님, interval day 1 아님, interval '1 day' 아님 
+- DATE_ADD(date_col, INTERVAL 1 DAY) : ADD_DATE()아님, interval day 1 아님
 - 날짜_더한다() 동사로 시작 아님 주의 
 - 서브쿼리는 괄호로 꼭 묶어줘야햠
 - ROUND() 함수쓸 때 괄호 위치 재확인 
 - CTE로 풀어도 되지만 서브쿼리로 푸는게 가독성이 더 좋은 경우였음. 
+
+- lead() over(partition by .. order by ...  ): order by 필수!!!! 데이터 앞, 뒤 개념은 정렬된 순서에서만 존재함 
+- RDB는 데이터를 정렬해서 저장하지 않는다. order by 없으면 순서가 매번 달라진다. 
  
 
 -- 성능 최적화 답안 쿼리 
@@ -36,7 +39,7 @@ JOIN activity a2
 
 
 -- CTE 버젼 
-WITH FirstLogin AS (
+WITH firstlogin AS (
     SELECT player_id, MIN(event_date) AS first_date
     FROM activity
     GROUP BY player_id
@@ -80,6 +83,20 @@ SELECT
 FROM ranked_activity
 WHERE rn = 1;
 
+
+
+-- min(), lead() 사용, partition by player_id order by event_date 같은 조건을 사용하므로 오버헤드 거의 없음
+-- 한번에 정렬해두고 동시에 계산함 
+-- order by를 표시하지 않아서 계속 오답이었음. 
+-- lag(), lead(), row_number(), rank() 는 정렬 순서가 중요하므로 항상 order by 잊지 말기.
+
+with base as (
+    select player_id, 
+            min(event_date) over(partition by player_id order by event_date) as first_login,
+            lead(event_date) over(partition by player_id order by event_date) next_day from activity)
+
+select round(count(player_id) / (select count(distinct player_id) from activity), 2) as fraction
+from base where date_add(first_login, interval 1 day) = next_day
 
 ------------------------------------------------------------------
 -- 필터링을 많이 해두고 시작할 수 있는 조건을 찾는게 중요하다 
